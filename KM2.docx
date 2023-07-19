@@ -1,0 +1,1584 @@
+
+一、	单选（20道，每道题3分）
+DCBCD 
+1、以下类命名符合规范的是：
+A、marcoPolo  B、XMLService  C、info  D、TaPromotion
+
+2、下面说法不正确的是：
+A、避免文件过长，不超过2000行（非空非注释行）
+B、一个源文件按顺序包含版权、package、import、顶层类，且用空行分隔
+C、import包应当按照先华为公司，安卓、其它商业组织，其它开源第三方、net/org开源组织、最后java的分类顺序出现，并用一个空行分组
+D、一个类或接口的声明部分应当按照类变量、实例变量、构造器、方法的顺序出现，且用空行分隔
+
+3、以下关于浮点数，正确用法为
+A、
+for (float flt = (float) 2000000000; flt < 2000000050; flt++) {
+...
+}
+
+B、精确运算使用BigDecimal
+BigDecimal income = new BigDecimal("1.03");
+BigDecimal expense = new BigDecimal("0.42");
+System.out.println(income.subtract(expense));
+C、
+public class NaNComparison {
+    public static void main(String[] args) {
+        double num = 0.0d;
+        double result = Math.cos(1 / num);
+        if (result == Double.NaN) {
+            System.out.println("result is NaN");
+        }
+    }
+}
+
+D、
+Long sum = 0L;
+for (long i = 0L; i < Integer.MAX_VALUE; i++)
+{
+    sum += i;
+}
+
+4、以下程序输出结果为？
+public class Increment {
+    public static void main(String[] args) {
+        int count = 0;
+        for (int i = 0; i < 100; i++) {
+            count = count++;
+        }
+        System.out.println(count);
+    }
+}
+A、100 B、99 C、0 D、1
+
+5、以下说法不正确的是？
+A、Integer i1 = 10; Integer i2 = 10; i1和i2指向同一个对象
+B、整数型包装类型应使用equals做相等的比较
+C、基本类型优于包装类型
+D、浮点型包装类型建议使用equals或flt.compareTo(another)==0做相等的比较
+DBCAB
+
+6、以下代码正确的是
+A、short s = 1;s = s + 1;
+B、
+int big = 1999999999;
+float one = 1.0f;
+System.out.println(big * one);
+
+C、
+int ni = 6789
+double d1 = ni / 30;
+
+D、
+long nl = 4664382371590123456L;
+double d2 = (double) nl * 2;
+
+7、以下说法正确的是
+A、以下代码输出
+swan can fly …
+UglyDuck can fly …
+
+class Swan {
+    public static void fly() {
+        System.out.println("swan can fly ...");
+    }
+}
+class UglyDuck extends Swan {
+    public static void fly() {
+        System.out.println("ugly duck can't fly ...");
+    }
+}
+public class TestFly {
+    public static void main(String[] args) {
+        Swan swan = new Swan();
+        Swan uglyDuck = new UglyDuck();
+        swan.fly();
+        uglyDuck.fly();
+    }
+}
+
+B、以下代码输出"I know!"
+class WhoKnows {
+    static String sentence = "I don't know.";
+    public static void main(String[] args) {
+        String sentence = "I know!";
+        System.out.println(sentence);
+    }
+}
+
+C、以下代码输出"hello, obscure world!"
+public class Obscure {
+    static String System; 
+    public static void main(String[] args) {
+        System.out.println("hello, obscure world!");
+    }
+}
+
+8、关于下面程序，说法正确的是
+public class SeniorClass {
+    public SeniorClass() {
+        toString();
+    }
+    @Override
+    public String toString() {
+        return "IAmSeniorClass";
+    }
+}
+public class JuniorClass extends SeniorClass {
+    private String name;
+    public JuniorClass() {
+        super();
+        name = "JuniorClass";
+    }
+    @Override
+    public String toString() {
+        return name.toUpperCase();
+    }
+}
+
+JuniorClass juniorClass = new JuniorClass();
+A、调用juniorClass.toString方法输出JUNIORCLASS
+B、调用juniorClass.toString方法输出IAMSENIORCLASS
+C、构造实例时导致NullPointerException异常
+D、编译错误
+
+
+9、以下代码输出
+public static void main(String[] args) {
+    try {
+        System.out.println("aa:" + func());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+public static int func() throws Exception {
+    int elm = 1;
+    for (int i = 1; i < 2; i++) {
+        try{
+            throw new Exception("bb");
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            continue;
+        }
+    }
+    return 0;
+}
+
+A、aa:0  B、抛出异常 C、编译错误 D、既打印aa:0 同时抛出异常
+
+10、以下代码正确的是：
+a)	String[] arr = new String[]{"1","2","3","4","5"};
+List<String> list =Arrays.asList(arr);
+list.remove("5");
+list.add("6");
+b)	Map<String,String> map = new HashMap<>();
+map.put("1","a");
+map.put("2","b");
+List<String> list = new ArrayList<>();
+list.addAll(map.values());
+list.addAll(Collections.singleton("c"));
+c)	List<String> list = Collections.emptyList();
+list.add("1");
+d)	List<String> list = new ArrayList<>();
+list.add("1");
+list.add("2");
+ArrayList<String> subList = (ArrayList<String>) list.subList(0,0);
+CBACC 
+
+11、需要关闭资源，下面哪个写法更好？
+A、
+FileInputStream in = new FileInputStream(inputFileName);
+try{
+//code that might throw exceptions
+}finally {
+in.close();
+}
+
+B、
+FileInputStream in = new FileInputStream(inputFileName);
+Exception ex = null;
+try{
+try{
+//code that might throw exceptions
+} catch (Exception e) {
+   ex = e;
+   throw e;
+} finally {
+try{
+in.close();
+}catch (Exception e){
+if(ex == null) throw e;
+}
+}
+
+C、
+try (FileInputStream in = new FileInputStream(inputFileName);
+FileOutputStream out = new FileOutputStream(outputFileName)) {
+copy(in, out);
+}
+
+12、以下代码返回结果
+public class Email {
+    public String address;
+    public Email(String address) {
+        this.address = address;
+    }
+    public int hashCode() {
+        int result = address.hashCode();
+        return result;
+    }
+    public static void main(String[] args) {
+        HashSet<Email> set = new HashSet<>();
+        Email email = new Email("huawei.com");
+        set.add(email);
+        email.address = "silong.com";
+        System.out.println(set.contains(email)); 
+        set.remove(email); 
+    }
+}
+
+A、true B、false C、编译错误  D、运行时异常
+
+13、将list转换为数组时最佳SIZE
+List<String> list = new ArrayList<>(DEFAULT_CAPACITY);
+list.add("1");
+list.add("2");
+String[] array = list.toArray(new String[SIZE]);
+A、0  B、1  C、2 D、3
+
+14、以下选项定义两个变量声明属于同一个对象的是
+A、Integer bar = new Integer(90);
+Integer baz = new Integer(90);
+B、String boo = “string”;
+String foo = new String("string");
+C、Integer bar = Integer.valueOf(90);
+Integer baz = Integer.valueOf(90);
+
+15、以下声明，建议使用的是
+A、泛型数组：private final T[] someArray
+B、协变化的数组：private final Object[] objArray;
+C、泛型列表：private final List<T> lists;
+ CCCBB
+
+16、关于序列化不正确的是
+A、序列化对象中的HashMap、HashSet或HashTable等集合不能包含对象自身的引用
+B、建议除非必须使用的第三方接口要求必须实现Serializable接口，否则请选用
+其它方式代替
+C、实现Serializable接口的可序列化类建议使用默认的serialVersionUID
+D、系统资源的句柄，建议实现Serializable的类，其字段为File或FileDescriptor时，用transient修饰。
+
+17、以下代码的执行结果
+public static void main(String[] args) {
+    char alpha = 'A';
+    int foo = 65;
+    boolean trueExp = true;
+    System.out.println(trueExp ? alpha : 0);
+    System.out.println(trueExp ? alpha : foo);
+}
+A、A A
+B、65 65
+C、A 65
+D、65 A
+
+18、关于多线程并发，说法不正确的是
+A、创建新线程时需指定线程名
+B、使用Thread对象的setUncaughtExceptionHandler方法注册未捕获异常处理者
+C、建议使用非volatile变量作为通知用的变量
+D、避免不加控制地创建新线程，而应该使用线程池来管控资源
+
+19、以下代码输出结果为？
+public static String test(){
+    try{
+        throw new Exception("Something error");
+    }catch(Exceptione){
+        return "2";
+    }
+    finally{
+        return "3";
+    }
+}
+A、”2” B、"3" C、编译错误 D、抛出异常
+
+20、以下代码输出正确的是
+class Food{}
+class Friut extends Food{}
+class Apple extends Friut{}
+Food food = new Food();
+Friut friut = new Friut();
+Apple apple = new Apple();
+List<? extends Friut> list1 = new ArrayList<>();
+List<? super Friut> list2 = new ArrayList<>();
+1、list1.add(apple);
+2、List1.add(friut);
+3、List1.add(food);
+4、list2.add(apple);
+5、List2.add(friut);
+6、List2.add(food);
+7、List<Food> foods = new ArrayList(); list1 = foods;
+8、List<Friut> foods = new ArrayList(); list1 = foods;
+9、List<Apple> foods = new ArrayList(); list1 = foods;
+10、List<Food> foods = new ArrayList(); list2 = foods;
+11、List<Friut> foods = new ArrayList(); list2 = foods;
+12、List<Apple> foods = new ArrayList(); list2 = foods;
+A、true true false false true true false true true true true false
+B、false false false true true false false true true true true false
+C、false false false true true false false false false false false true
+
+
+二、多选（10道，每道题4分）
+ABCD   BCD    ABCD   BC ABD   
+
+1、下面命名识别小驼峰的有哪些？
+A、类的字段  B、方法参数 C、方法 D 局部变量
+
+2、关于可变参数说法正确的是
+A、可以接受指定类型的1个到多个参数
+B、不建议使用varargs重写使用一个固定长度数组作为参数的方法
+C、JDK1.5引入Varargs（variable number of arguments）可变数量参数，应该在确实需要操作可变长度的值的序列时使用
+D、可变参数必须位于最后一项
+
+3、关于记录日志正确的是
+A、日志的记录，不要使用 System.out 与 System.err 进行控制台打印，进行处理应使用Facade模式的日志框架（例如：产品自研的，或第三方Slf4j等）
+B、日志工具Logger类的实例应声明为private static final
+C、日志应分等级，对info及以下，使用条件形式或者使用占位符的方式
+D、非仅限于中文区销售产品禁止用中文打印日志
+
+4、删除集合元素，以下代码正确的是
+List<String> list = new ArrayList<>(DEFAULT_CAPACITY);
+list.add("1");
+list.add("2");
+
+A、for (String item : list) {
+if ("1".equals(item)) {
+list.remove(item);
+}
+}
+B、list.removeIf(item -> "1".equals(item));
+C、
+Iterator<String> iterator = list.iterator();
+while (iterator.hasNext()) {
+String item = iterator.next();
+if (isRemovable()) {
+iterator.remove();
+}
+}
+5、关于方法说法正确的是
+A、方法的参数个数不应超过5个
+B、构造方法如果参数较多，尽量重用
+C、方法的入参建议当做工作变量/临时变量
+D、避免方法过长，不超过50行（非空非注释）；避免方法的代码块嵌套过深，不要超过4层
+
+ACD    ABC    AD ABCD     ABC
+6、关于hashCode和equals说法正确的是
+A、同一次运行中，同一个对象如果equals方法中用到的信息没有改变，多次调用hashCode方法返回值必须相同；
+B、如果两个对象调用equals方法时相等，则这两个对象的hashCode方法返回也相同；两个对象的hashCode方法返回值相等，则两个对象的equals也相等
+C、如果两个对象调用equals方法时不相等，则这两个对象的hashCode方法，可以相同，也可以返回不同的值
+D、覆写equals的时候，应同时覆写hashCode方法
+
+7、以下说法正确的是
+A、Java 8使用Optional代替null作为返回值或者可能的缺失值;禁止对optional对象赋值为null
+B、禁止对optional对象赋值/返回为null，或与null比较
+C、不应该返回Optional<Integer> , Optional<Long> , Optional<Double> ,而用OptionalInt,OptionalLong,OptionalDouble
+D、枚举常量的序号生成建议依赖ordinal()方法
+
+8、以下说法正确的是
+A、不要在代码中硬编码"\n"和"\r"作为换行符号，建议使用System.lineSeparator()方法获取运行时环境的换行符
+B、编码时尽量依赖平台默认的字符编码方式
+C、String类的toUpperCase()和toLowerCase()方法、format()方法，建议使用默认的编码模式进行转换
+D、使用java.nio.charset中的类编码解码字符集
+
+9、关于性能和资源管理，以下说法正确的是
+A、使用System.arraycopy()进行数组复制，而不是自己使用循环复制
+B、初始化集合时，如果已知或可以预测元素数量，则给出初始化大小；不能预测的情况下使用默认大小
+C、禁止使用主动GC（除非在密码、RMI等方面），尤其是在频繁/周期性的逻辑中
+D、禁止使用finalize()方法
+
+10、关于接口说法正确的是
+A、接口中可包含静态方法和default方法
+B、接口中属性默认public static final修饰词
+C、方法已缺省具有public abstract修饰词
+
+一、	单选（20道，每道题3分）
+DDBBB  
+1、以下声明可用于锁对象的是
+A、private final Boolean initialized = Boolean.FALSE;
+B、
+private int count = 100;
+private final Integer lock = count;
+C、private final String lock = new String("LOCK").intern();
+D、private final String lock = new String("LOCK");
+
+2、以下使用锁正确的是
+A、
+private final Lock lock = new ReentrantLock();
+public void doSomething() {
+synchronized (lock) {
+// ...
+}
+}
+B、
+class Base {
+    static DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
+    public Date parse(String str) throws ParseException {
+        synchronized (getClass()) {
+            return format.parse(str);
+        }
+    }
+}
+class Derived extends Base {
+    public Date doSomethingAndParse(String str) throws ParseException {
+        synchronized (Base.class) {
+            // ...
+            return format.parse(str);
+        }
+    }
+}
+
+
+C、
+public final class CountBoxes implements Runnable {
+    private static volatile int counter;
+    // ...
+    private final Object lock = new Object();
+    @Override
+    public void run() {
+        synchronized (lock) {
+            counter++;
+            // ...
+        }
+    }
+    public static void main(String[] args) {
+        for (int i = 0; i < 2; i++) {
+            new Thread(new CountBoxes()).start();
+        }
+    }
+}
+
+
+D、
+class Base {
+    static DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
+    public Date parse(String str) throws ParseException {
+        synchronized (Base.class) {
+            return format.parse(str);
+        }
+    }
+}
+
+
+3、以下说法不正确的是
+A、当关闭断言时，会导致程序的运行结果不一致
+private ArrayList<String> names;
+void process(int index) {
+assert names.remove(null); 
+// ...
+}
+B、建议子类通过重载扩大方法的可访问性，这样可以拥有更大的访问权限
+C、对于实现了java.lang.Cloneable接口的类，应该将方法clone()的可访问性从protected增加为public
+D、如果忽略方法的返回值或对函数调用失败情况未正确处理，可能会导致安全风险。
+
+4、关于敏感异常，说法不正确的是
+A、如果在传递异常的时候未对其中的敏感信息进行过滤，常常会导致信息泄露
+B、重点关注异常中的文本消息，异常本身的类型不会泄露敏感信息
+C、对出于问题定位目的，可将敏感异常信息记录到日志中，但必须做好日志的访问控制，防止日志被任意访问，导致敏感信息泄露给非授权用户。
+D、可以通过限制输入、安全策略方式过滤掉异常中的敏感信息
+
+5、如下代码片段中，假设SomeObject是一个暴露给非信任代码交互的类，则[1]处可以加入下面哪项代码：
+public class SomeObject {
+[1]
+public void changeValue() {
+synchronized (lock) {
+// Locks on the private Object
+// ...
+}
+}
+}
+A、private final Object lock = SomeObject.class;
+B、private final Object lock = new Object();
+C、public final Object lock = new Object();
+D、transient final Object lock = new Object();
+BDBDC 
+
+6、以下说法正确的是
+A、使用不可信数据构造格式化字符串时，当转换参数与对应的格式符不匹配时，标准类库会抛出异常，不会造成系统信息泄露或拒绝服务
+B、用户可以通过输入一个回车符或一个换行符（CRLF）来将一条合法日志拆分成两条日志，使得日志内容可能令人误解
+C、尽可能使用“黑名单”策略来接收跨信任边界的数据，而不是使用白名单，白名单校验方式较弱
+D、对不可信数据校验建议使用断言的方式校验
+
+7、以下说法正确的是
+A、将含敏感数据的对象跨信任域传递前需要先加密后签名
+B、默认情况下，自动签名认证机制使用JAR文件中包含的公钥来验证签名，这就可以保证公钥和签名未被恶意篡改
+C、一些常用的JSON框架都具有type功能，它可以很方便的将java的对象类型和json数据格式之间进行转换，建议默认开启JSON框架的type功能
+D、非静态的内部类序列化时会隐式的对外部类实例的非transient对象进行序列化
+
+8、以下代码可以有效预防sql注入的是
+A、
+Statement stmt = null;
+ResultSet rs = null;
+try {
+    String userName = ctx.getAuthenticatedUserName(); // this is a constant
+    String sqlString = "SELECT * FROM t_item WHERE owner='" + userName + "' AND itemName='" +
+            request.getParameter("itemName") + "'";
+    stmt = connection.createStatement();
+    rs = stmt.executeQuery(sqlString);
+    // ... result set handling
+} catch (SQLException se) {
+    // ... logging and error handling
+}
+
+B、
+PreparedStatement stmt = null;
+ResultSet rs = null;
+try {
+    String userName = ctx.getAuthenticatedUserName(); // this is a constant
+    String itemName = request.getParameter("itemName");
+    // ...Ensure that the length of userName and itemName is legitimate
+    // ...
+    String sqlString = "SELECT * FROM t_item WHERE owner=? AND itemName=?";
+    stmt = connection.prepareStatement(sqlString);
+    stmt.setString(1, userName);
+    stmt.setString(2, itemName);
+    rs = stmt.executeQuery();
+    // ... result set handling
+} catch (SQLException se) {
+    // ... logging and error handling
+}
+
+C、
+CREATE PROCEDURE sp_queryItem
+@userName varchar(50),
+@itemName varchar(50)
+AS
+BEGIN
+DECLARE @sql nvarchar(500);
+SET @sql = 'SELECT * FROM t_item
+WHERE owner = ''' + @userName + '''
+AND itemName = ''' + @itemName + '''';
+EXEC(@sql);
+END
+GO
+
+CallableStatement = null;
+ResultSet results = null;
+try {
+    String userName = ctx.getAuthenticatedUserName(); // this is a constant
+    String itemName = request.getParameter("itemName");
+    cs = connection.prepareCall("{call sp_queryItem(?,?)}");
+    cs.setString(1, userName);
+    cs.setString(2, itemName);
+    results = cs.executeQuery();
+    // ... result set handling
+} catch (SQLException se) {
+    // ... logging and error handling
+}
+
+D、使用mybatis文件
+<select id="getItems" parameterClass="MyClass" resultClass="items">
+SELECT * FROM t_item WHERE owner = #{username} AND itemName = '${itemName}'
+</select>
+
+9、java中用来对字符串做归一化的方法是
+A、java.lang.String.intern()
+B、java.lang.String.trim()
+C、java.text.Format.format()
+D、java.text.Normalizer.normalize()
+
+10、以下说法正确的是
+A、临时文件由于会定期被清理掉，所以不用显示的清理临时文件
+B、java.nio包中的Buffer类定义了一系列方法，如wrap()、slice()、duplicate()，这些方法会创建一个新的buffer对象，修改这个新buffer对象不会导致原始的封装数据也被修改
+C、运行一个外部进程时，如果此进程往其输出流发送任何数据，则必须将其
+输出流清空。类似的，如果进程会往其错误流发送数据，其错误流也必须被清空
+D、Java代码中常用的抽象方法Reader.read()方法用于从流中读取一个字节或字符，返回值的范围为0～65535，所以应定义char类型接收返回值
+BCBCA 
+
+11、以下说法不正确的是
+A、哈希运算时，在口令中加入盐值后，可有效抵御“生日”或“彩虹表”攻击
+B、应使用java.util.Random类在安全敏感应用或者敏感数据保护上
+C、任何能够访问到class文件的人都可以反编译class文件，所以禁止将敏感信息硬编码到程序中
+D、禁止在日志中包括口令（包括明文口令和密文口令）、密钥或其他敏感数据
+
+12、以下说法正确的是
+A、建议使用String存储敏感数据，使用结束后立即赋为空
+B、使用java.net.Socket类在不安全的传输通道中传输敏感数据
+C、调用SecurityManager执行的安全检查，进行安全检查的方法必须声明为private或final
+D、编写自定义类加载器时，需要复写getPermissions()方法时，可以忽略了基类的getPermissions()方法
+
+13、下面是一段使用ZipInputStream对压缩文件进行解压的代码，在[1]处填写的合适关键字是
+public RandomAccessFile openFile(final java.io.File f) {
+       RandomAccessFile rf = null;
+         try {
+              [1] java.io.File copy = new java.io.File(f.getPath());
+             askUserPermission(copy.getCanonicalPath());
+             // ...
+             rf = AccessController.doPrivileged(new PrivilegedExceptionAction<RandomAccessFile>() {
+                public RandomAccessFile run() throws FileNotFoundException {
+                        return new RandomAccessFile(copy, "r");
+                    }
+                });
+            } catch(IOException e) {
+                // handle error
+            } catch (PrivilegedActionException e) {
+                // handle error
+            }
+            return rf;
+        }
+
+A、static B、final C、volatile D、private
+
+14、下列哪种操作可能带来死锁？
+A. lock(m1) lock(m2) unlock(m1) unlock(m2)
+B. lock(m1) lock(m2) unlock(m2) lock(m2) unlock(m1) unlock(m2)
+C. lock(m1) lock(m2) unlock(m1) lock(m1) unlock(m2) unlock(m1)
+D. lock(m1) lock(m2) unlock(m1) unlock(m2) lock(m1) unlock(m1)
+
+15、下面代码片段描述正确的是（A）
+public static int cardinality(Object obj, final Collection<?> col) {
+  int count = 0;
+  if (col == null) {
+    return count;
+  }
+  Iterator<?> it = col.iterator();
+  while (it.hasNext()) {
+    Object elt = it.next();
+    if ((null == obj && null == elt) || obj.equals(elt)) { 
+      count++;
+    }
+  } 
+  return count;
+}
+A、存在空指针异常风险
+B、存在数组越界风险
+C、代码编译报错
+D、代码无异常风险
+ACDBB
+
+16、解压文件过程中，下列说法不正确的是（）
+A.	在解压文件前，调用ZipEntry.getSize()方法判断其大小
+B.	解压出的标准化路径文件不可以在解压目标目录之外
+C.	解压之后的文件大小超过一定的限制时，必须拒绝将其解压
+D.	解压出来的文件条目总数需要进行限制
+
+17、以下代码输出（说明：Java代码，主要使用Unicode编码方式。对于Unicode编码，同一字符可以有多重不同的表现形式，“\uFE64”、“<”都可以表示“<”， "\uFE65"、“>”都可以表示“>”）
+
+String s = "\uFE64" + "script" + "\uFE65";
+Pattern pattern = Pattern.compile("[<>]"); 
+Matcher matcher = pattern.matcher(s);
+if (matcher.find()) {
+throw new IllegalStateException();
+} else {
+    System.out.println("not match");
+}
+A、抛出异常 B、编译错误 C、打印not match D、运行时异常
+
+18、下列关于java 中的sleep() 和 wait()方法的区别描述不正确的是？
+A、wait()方法属于Object类，sleep()属于Thread类
+B、调用wait()方法的时候，线程会放弃对象锁
+C、调用sleep()方法的过程中，线程不会释放对象锁
+D、执行完notifyAll方法，调用wait的线程会被唤醒立即开始执行
+
+19、下列JDK中的API调用中若使用不当易遭致OS命令注入的是：
+A、java.lang.System.load()
+B、java.lang.Runtime.exec()
+C、java.lang.Thread.start()
+D、java.lang.Process.waitFor()
+
+20、以下说法正确的是
+A、调用Thread.run()方法表示启动一个新线程执行
+B、禁止使用Thread.stop()来终止线程，调用Thread.stop()会造成一个线程非正常释放它所获得的所有锁，可能会暴露这些锁保护的对象，使这些对象处于一个不一致的状态中。
+C、程序可以不同的顺序来请求和释放锁，避免产生死锁
+D、同步代码时建议使用静态public的锁对象
+
+二、多选（10道，每道题4分）
+ABCD ABCD ABC ABC ABCD 
+1、关于NullPointException异常，说法正确的是
+A、NullPointException是运行时异常，不建议捕获，应该在代码中解决
+B、捕获NullPointException而不是进行简单的空引用检查，在性能上付出相当大的代价
+C、捕获NullPointException异常而不对根本原因进行处理是不合适的
+D、对于调用开源三方件，三方件中抛出NullPointerException异常时，可以捕获NullPointerException，并对该异常进行处理
+
+2、以下属于敏感异常的是
+A、FileNotFoundException
+B、ConcurrentModificationException
+C、BindException
+D、OutOfMemoryError
+
+3、目录遍历攻击可以直接带来哪些危害？
+A、攻击者可以访问受限目录和文件
+B、攻击者可以篡改系统的任意文件
+C、攻击可可以恶意删除系统中的文件
+D、攻击者可以窃取内存中数据
+
+4、预防ReDos攻击，比较有效的防护手段有
+A、进行正则匹配前，先对匹配的文本的长度进行校验
+B、在编写正则时，尽量不要使用过于复杂的正则，越复杂越容易有缺陷
+C、在编写正则时，尽量减少分组的使用
+D、避免动态构建正则，当使用不可信数据构造正则时，要使用黑名单进行严格校验
+
+5、防止未加密的敏感数据被序列的方法有
+A、使用transient定义敏感数据
+B、使用serialPersistentFields定义非敏感数据
+C、重新定义Serializable接口的writeObject()、writeReplace()、writeExternal()这些函数，不将包含敏感信息的字段写到序列化字节流中。
+D、在在序列化与反序列化涉及的writeObject()和readObject()方法中使用安全管理器
+CD BC BC BCD ABCD
+6、当直接将外部输入作为参数传递给java.lang.Runtime.exec()方法的时候易引入下列哪些攻击类型的漏洞
+A、SQL注入
+B、XML注入
+C、命令注入
+D、参数注入攻击
+
+7、若一个实现了Serializable的类的构造器方法、内部状态获取与修改方法中都涉及安全管理器检查，那么这些安全管理器检查操作也需要应用到这个类的下列哪些方法中
+A、equals()  B、writeObject()  C、readObject()  D、 hash()
+
+8、以下说法正确的是
+A、文件路径校验前必须先进行标准化处理，建议使用getAbsolutePath()
+B、未对程序输入做有效的校验与限制可能会导致zip炸弹攻击、SQL注入、OS命令注入、XML注入以及目录遍历等攻击
+C、数值运算，建议使用先决条件检查、Math.*Exact()方法、向上类型转换等方式防止溢出
+D、建议通过System.exit()函数来终止运行的程序和线程
+
+9、属于经过验证、安全的、公开的加密算法的是
+A、AES的ECB模式
+B、RSA
+C、DSA/ECDSA
+D、加入盐值的SHA256
+E、DES
+
+10、属于不可信数据列表的有
+A、命令行
+B、用户输入
+C、环境变量
+D、网络数据
+
+
+一、	单选（20道，每道题3分）
+CBCCC  
+1、在执行JDBC查询数据库时，假设物理内存足够用，如果查询结果集ResultSet要返回的记录数很多，比如上百万记录，则下列选项中对ResultSet的fetchsize属性描述正确的是
+A、ResultSet的fetchSize越大，数据库服务端消耗的内存越小，性能也越快
+B、ResultSet的fetchSize越大，数据库服务端消耗的内存越大，性能也越快
+C、ResultSet的fetchSize越大，JDBC client端消耗的内存越大，性能也越快
+D、ResultSet的fetchSize越大，JDBC client端消耗的内存越小，性能也越快
+
+2、以下代码输出什么
+@Data
+class Scratch implements Cloneable {
+String name;
+    List<String> objList;
+    public Object clone(){
+        Object obj = null;
+        try{
+            obj = super.clone();
+        }catch(CloneNotSupportedException ex){
+            ex.printStackTrace();
+        }
+        return obj;
+    }
+
+    public static void main(String[] args) {
+        Scratch copy = new Scratch();
+        List<String> objList = new LinkedList<>();
+        objList.add("abc");
+        copy.setObjList(objList);
+copy.setName("name1");
+
+        Scratch copy2 = (Scratch) copy.clone();
+        copy2.getObjList().add("ddd");
+copy2.setName("name2");
+
+System.out.println(copy.getName() + " " + copy2.getName());
+        System.out.println(copy.getObjList().size() + " " +     
+                           copy2.getObjList().size());
+}
+}
+A、
+name1 name2
+1 2
+B、
+name1 name2
+2 2
+C、
+name2 name2
+2 2
+D、
+name1 name2
+1 1
+
+3、关于序列化说法不正确的是
+A、序列化只能保存对象的非静态成员交量，不能保存任何的成员方法和静态的成员变量
+B、transient关键字的作用是：阻止实例中那些用此关键字声明的变量持久化
+C、当一个父类实现序列化，子类若要实现序列化，需要显式实现Serializable接口
+D、一个子类实现了 Serializable 接口，它的父类都没有实现 Serializable 接口，要想将父类对象也序列化，就需要让父类也实现Serializable 接口
+
+4、以下代码输出什么
+class Point {
+    private int x;
+    private int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setLocation(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public static void main(String[] args) {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(0, 0);
+        modifyPoint(p1, p2);
+        System.out.println("[" + p1.x + "," + p1.y + "],[" + p2.x + "," + p2.y + "]");
+    }
+    private static void modifyPoint(Point p1, Point p2){
+        Point tmpPoint = p1;
+        p1 = p2;
+        p2 = tmpPoint;
+        p1.setLocation(5,5);
+        p2 = new Point(5,5);
+    }
+}
+
+A、[0,0],[0,0]
+B、[5,5],[0,0]
+C、[0,0],[5,5]
+D、[5,5],[5,5]
+
+5、以下代码调用值发生改变的是
+A、
+void foo(int value) {
+    value = 100;
+}
+foo(num);
+
+B、
+void foo(String text) {
+    text = "windows";
+}
+foo(str);
+
+C、
+StringBuilder sb = new StringBuilder("iphone");
+void foo(StringBuilder builder) {
+    builder.append("4");
+}
+foo(sb);
+
+D、
+StringBuilder sb = new StringBuilder("iphone");
+void foo(StringBuilder builder) {
+    builder = new StringBuilder("ipad");
+}
+foo(sb);
+BDCCC
+6、以下代码输出
+String strTest1 = "abc";
+String strTest2 = new String("abc");
+System.out.println(strTest1 == strTest2);
+System.out.println(strTest1.equals(strTest2));
+System.out.println(strTest1 == strTest2.intern());
+System.out.println(strTest1 == "abc");
+System.out.println(strTest2 == "abc");
+
+A、true false true true true
+B、false true true true false
+C、true false false true true
+D、false true false true false
+
+7、哪个类写操作是线程安全的
+A、FileWriter
+B、RandomAccessFile
+C、FileOutputStream
+D、FileChannel
+
+8、以下代码输出什么
+Map<Integer, Integer> map = new LinkedHashMap<Integer, Integer>(16,0.75f,true){
+@Override
+protected boolean removeEldestEntry(Map.Entry eldest){
+        return size() > 5;
+}
+};
+for(int i = 0; i < 10; i++){
+map.put(i,i);
+}
+map.get(6);
+System.out.println(map.keySet());
+A、[5,6,7,8,9]
+B、[9,8,7,6,5]
+C、[5,7,8,9,6]
+D、[6,5,7,8,9]
+
+
+
+9、以下代码输出？
+int[] a = {100, 101, 102};
+OUTER:
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < a.length; j++) {
+        if (j == 1) {
+            continue OUTER;
+        } else {
+            System.out.println('A');
+        }
+    }
+    System.out.println('B');
+}
+System.out.println('C');
+A、一个A，一个B，一个C
+B、一个A，一个C
+C、三个A，一个C
+D、三个A，三个B，一个C
+
+10、以下代码返回值为
+class Point {
+    private int x;
+
+    public static void main(String[] args) {
+        System.out.println(test1().x);
+        System.out.println(test2());
+        System.out.println(test3());
+    }
+
+    public static Point test1(){
+        Point p = new Point();
+        try{
+            p.x = 20;
+            return p;
+        }
+        finally{
+            p.x =30;
+        }
+    }
+
+    public static int test2(){
+        int a =100;
+        try{
+            a = 200;
+            return a;
+        }
+        finally{
+            a = 300;
+        }
+    }
+
+    public static int test3(){
+        int a =100;
+        try{
+            a = 200;
+            return a;
+        }
+        finally{
+            a = 300;
+            return a;
+        }
+    }
+}
+A、30 200 200
+B、20 200 300
+C、30 200 300
+D、20 300 200
+	AABCB  
+11、下面描述错误的是：
+A、HashMap不允许null值(key和value都不可以)，而Hashtable允许将null作为一个entry的key或者value
+B、Hashtable是线程安全的，也就是说是同步的，HashMap线程不安全的，不是同步的
+C、Hashtable和HashMap都实现了Map接口
+D、ConcurrentHashMap不可存放key，value值都为null的数据
+
+12、以下代码输出？
+class Parent {
+    int a = 100;
+
+    public int f() {
+        return 10;
+    }
+}
+
+class Son extends Parent {
+    int a = 200;
+
+    public int f() {
+        return 20;
+    }
+
+    public static void main(String[] args) {
+        Parent parent = new Son();
+        System.out.println(parent.f() + " " + parent.a);
+    }
+}
+A、20 100
+B、20 200
+C、10 200
+D、10 100
+
+13、以下代码输出
+class Parent {
+    public int a = 100;
+    private int b = 200;
+    protected int c =300;
+    public int f() {
+        return 10;
+    }
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+        Field[] fields = Parent.class.getDeclaredFields();
+        System.out.println(fields.length);
+
+        Field[] fields1 = Parent.class.getFields();
+        System.out.println(fields1.length);
+    }
+}
+A、1 3 
+B、3 1 
+C、1 1 
+D、3 3
+
+14、关于异常以下说法不正确的是
+A、throws出现在方法函数头，throw出现在函数体
+B、受检异常在编译层面会进行检查，如果调用一个抛出受检异常的函数，必须进行try-catch处理异常或在函数签名申明throws此异常，否则编译失败
+C、并语法(ExceptionType| ...| ExceptionType 变量），子类异常必须在父类异常之前
+D、通过多个catch捕获异常，子类异常必须在父类异常之前
+
+
+
+15、以下遍历list，推荐使用的是
+A、for(int i = 0; i < list.size(); i++){
+    }
+
+B、 for(A a : list){
+}
+C、for(Iterator<A> iter = list.iterator(); iter.hasNext(); ){
+}
+ACDBB
+16、以下程序运行结果为
+class Parent{
+    static {
+        System.out.println("Parent static body");
+    }
+
+    {
+        System.out.println("Parent non-static body");
+    }
+
+    Parent(){
+        System.out.println("Parent()");
+    }
+}
+
+public class Order extends Parent {
+    static {
+        System.out.println("static body");
+    }
+
+    {
+        System.out.println("non-static body");
+    }
+
+    Order (){
+        System.out.println("Order()");
+    }
+
+    public static void main(String[] args){
+        Order order = new Order ();
+    }
+}
+
+A、
+Parent static body
+static body
+Parent non-static body
+Parent()
+non-static body
+Order()
+
+B、
+Parent static body
+static body
+Parent non-static body
+non-static body
+Parent()
+Order()
+
+C、
+Parent static body
+Parent non-static body
+Parent()
+static body
+non-static body
+Order()
+
+D、
+Parent static body
+Parent non-static body
+static body
+non-static body
+Parent()
+Order()
+
+17、以下说法不正确的是
+A、类单继承，接口可以多继承
+B、抽象类中的抽象方法只能声明，不能实现
+C、抽象类中不能包含非抽象方法
+D、接口的方法可以有方法体，但必须加default或static关键字
+
+18、以下说法正确的是：
+class Base {
+    public Base(int i) {
+        System.out.println("Base(int i)");
+    }
+}
+
+class MyOver extends Base {
+    public MyOver(int i) {
+
+    }
+
+    public static void main(String[] args) {
+        MyOver m = new MyOver(10);
+    }
+}
+A、输出Base()
+B、输出Base(int i)
+C、什么都不输出
+D、编译错误
+
+19、以下程序输出什么
+int i = 9;
+switch (i) {
+    default:
+        System.out.println("default");
+    case 0:
+        System.out.println("zero");
+        break;
+    case 1:
+        System.out.println("one");
+    case 2:
+        System.out.println("two");
+}
+A、 default 
+B、 default, zero 
+C、 什么都不输出 
+D、 编译错误
+
+
+20、下面哪个不是Class类中定义的反射方法
+A、getDeclaredFields
+B、getDeclaredNames
+C、getDeclaredMethods
+D、getDeclaredConstructors
+
+
+
+二、多选（10道，每道题4分）
+ADF   BC   ACD  ACD  AC
+1、下面那些可以编译成功
+A、float f = 10f
+B、char c = 10.0
+C、byte b = 10b
+D、double d = 10
+E、float f = 10.0
+F、double d = 10.0
+
+2、关于集合，以下说法正确的是
+A、HashMap使用的是数组+链表（或红黑树）的方式，查找key时，先判断key的equals是否相等，相等时再判断 hashCode是否一致
+B、HashMap和HashSet的默认值大小为16，HashTable的默认值大小为11
+C、LinkedHashMap保持插入的顺序，TreeMap保持key的自然顺序
+D、Collection的直接子类包含Set、List、Map和Queue
+
+
+3、switch支持的类型
+A、byte B、long C、char  D、String
+
+4、关于函数重写和重载，说法正确的是
+A、重写是发生在父子类之间，方法不能抛出新的检查异常或者比被重写方法申明更加宽泛的异常
+B、重载发生在一个类里面，必须为同名函数，且函数的参数类型不同或参数类型的顺序不同或返回值不同
+C、重写的返回类型与被重写的返回类型可以不相同，但必须是父类返回值的派生类
+D、声明为final或static的方法不能被重写
+
+5、以下关于异常说法正确的是
+A、Throwable是所有Error或Exception的超类
+B、只有是Exception或Exception子类，才能被catch
+C、Error是正常的应用程序已无能为力的不应该试图捕获的严重问题，如OutOfMemoryError
+D、编译器会强制要求使用者捕获RuntimeException或申明抛出
+AC    ABCD  ABCD  BC ACD
+
+6、有关多线程中异常处理的说法正确的是
+A、Java多线程程序中，线程不允许抛出未捕获的Checked Exception
+B、Java多线程程序中，线程允许抛出未捕获的Checked Exception
+C、Java多线程程序中，建议使用Thread对象的setUncaughtExceptionHandler方法注册Runtime异常的处理者
+D、Java多线程中，主线程可通过try catch捕获子线程异常
+
+
+7、Java反射机制的作用包括
+A、在运行时判断任意一个对象所属的类。
+B、在运行时构造任意一个类的对象。
+C、在运行时判断任意一个类所具有的成员变量和方法。
+D、在运行时调用任意一个对象的方法。
+
+8、SocketChannel可以向Selector注册哪些事件
+A、SelectionKey.OP_ACCEPT
+B、SelectionKey.OP_CONNECT
+C、SelectionKey.OP_WRITE
+D、SelectionKey.OP_READ
+
+9、如下类型，哪些是值不可变类型
+A、char
+B、Integer
+C、String
+D、short
+
+10、在64位虚拟机，如下数据类型中，长度不是4字节的类型有哪些
+A、char
+B、int
+C、long
+D、short
+
+一、	单选（20道，每道题3分）
+DCBCA 
+1、以下代码输出什么？
+List<String> string = new ArrayList<String>();
+string.add("hello");
+string.add(2, "ok");
+System.out.println(string.get(1));
+A、"hello" B、"ok" C、编译错误 D、运行时异常
+
+2、PreparedStatement.setInt(int parameterIndex, int x)参数的含义
+A、把第parameterIndex+1 的参数值设置为x
+B、把第parameterIndex-1 的参数值设置为x
+C、把第parameterIndex 的参数值设置为x
+D、把第x-1 的参数值设置为把第parameterIndex
+
+3、以下代码执行两遍，文件text.txt中的内容为
+FileOutputStream outputStream = new FileOutputStream("test.txt",true);
+outputStream.write("ABCDE".getBytes(StandardCharsets.UTF_8));
+outputStream.close();
+A、ABCDE
+B、ABCDEABCDE
+C、什么都没有
+D、EDCBAEDCBA
+
+4、以下代码输出什么
+List arrayList = new ArrayList();
+arrayList.add("aaaa");
+arrayList.add(100);
+System.out.println((String)arrayList.get(1));
+
+A、100 B、编译错误 C、运行异常 D、aaaa
+
+5、以下代码输出什么
+List<String> stringArrayList = new ArrayList<String>();
+List<Integer> integerArrayList = new ArrayList<Integer>();
+System.out.println(stringArrayList.getClass().equals(integerArrayList.getClass()));
+A、true B、false C、编译错误 D、运行时异常
+AAAAC
+6、以下代码输出什么
+String str = "abc@x.y+com";
+String str1 = "ab_c@x.y.com";
+String regex = "^[a-zA-Z0-9.-_]+@([a-zA-Z0-9]+.)+com$";
+System.out.println(str.matches(regex));
+System.out.println(str1.matches(regex));
+A、true true  B、true false C、false true D、false false
+
+7、在main函数中调用t.interrupt，t线程会怎么样
+class Scratch extends Thread {
+    private boolean stop = false;
+    public static void main(String[] args) throws InterruptedException {
+        Scratch t = new Scratch();
+        t.start();
+        Thread.sleep(3000);
+        t.interrupt();
+        Thread.sleep(3000);
+        System.out.println("exit");
+    }
+
+    @Override
+    public void run(){
+        while(!stop){
+            System.out.println("running");
+        }
+        System.out.println("stop");
+    }
+}
+A、一直打印running 
+B、打印running后线程退出  
+C、打印running、stop线程退出
+
+8、main函数调用thread.setRunning(false)后，thread线程输出什么
+class Scratch extends Thread {
+
+    private boolean isRunning = true;
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("begin");
+        while (isRunning) {
+        }
+        System.out.println("end");
+    }
+}
+
+class Run {
+    public static void main(String[] args) {
+        try {
+            Scratch thread = new Scratch();
+            thread.start();
+            Thread.sleep(1000);
+            thread.setRunning(false);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+A、begin  B、begin end  C、抛出异常
+
+9、高并发场景，推荐使用
+A、ConcurrentHashMap
+B、HashTable
+C、有锁的HashMap
+D、TreeMap
+
+10、以下代码输出什么
+ArrayList<String> arrayList1 = new ArrayList<String>();
+arrayList1.add(new String());
+ArrayList<Object> arrayList2 = arrayList1;
+System.out.println(arrayList2.size());
+A、1 B、0 C、编译错误 D、运行时异常
+
+DBBDD 
+11、Socket哪些操作不会进入阻塞状态
+A、调用serversocket的accpet()监听客户端连接
+B、执行socket的输出流写数据
+C、执行socket的输入流读取数据
+D、调用Socket的getOutputStream(), getInputStream()
+
+12、不属于NIO Buffer中的属性变量
+A、capacity B、flag C、position D、limit
+
+13、关于classloader，说法不正确的是
+A、类加载机制就是从文件系统将一系列的 class 文件读入 JVM 内存中为后续程序运行提供资源的动作
+B、类加载器的顺序为AppClassLoader、Extention ClassLoader、 Bootstrap CLassloder
+C、类加载机制采用的双亲委派方式实现
+D、BootStrap ClassLoader负责加载JDK中的核心类库，如：rt.jar、resources.jar、charsets.jar
+
+14、不属于NIO组件的是
+A、Buffer B、Channel C、Selectors D、Reader
+
+15、关于IO/NIO说法不正确的是
+A、IO是面向流的，NIO是面向缓存的
+B、IO是阻塞IO，NIO支持非阻塞IO
+C、IO值能顺序读取数据，NIO可以通过缓存区前后移动获取数据
+D、IO允许一个线程监听多个输入通道
+CCCDD
+16、下面说法正确的
+A、volatile保证操作的修改可见性和原子性
+B、volatile和synchronized则可以使用在变量、方法、和类级别的
+C、synchronized和ReentrantLock都是可重入锁
+D、synchronized适合一写多读场景
+
+17、以下代码输出什么
+Comparator<Integer> df = new Comparator<Integer>() {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o1 > o2 ? 1 : (o1 == o2) ? 0 : -1;
+    }
+};
+System.out.println(df.compare(new Integer(1),new Integer(1)));
+A、0 B、1 C、-1 D、运行时异常
+
+18、正确的执行System.exit()的方式
+A、OOM时，主动执行System.exit()
+B、进程发生不可预知的异常时，主动执行System.exit()
+C、命令行执行System.exit()
+D、服务出现不可恢复的异常时，主动执行System.exit()
+
+19、不属于启动安全管理器的是？
+A、启动程序的时候通过附加参数启动安全管理器：-Djava.security.manager
+B、若要同时指定配置文件 -Djava.security.manager -Djava.security.policy="E:/java.policy"
+C、编码方式启动 System.setSecurityManager(new SecurityManager());
+D、编码方式启动 System.setProperty(“java.security.manager”, xxx);
+
+20、不正确的Stream的用法
+A、long test = Stream.of("1","2").count()
+B、List testList = Stream.of("1","2").collect(Collectors.toList())
+C、IntStream t = IntStream.of(10,20,30);
+D、Stream.of("1","2").toSet()
+
+二、多选（10道，每道题4分）
+ACD ACD BCFG AD ABCD
+1、以下说法正确的是
+A、调用Thread.interrupt() 用于请求另外一个线程中止执行，而不是直接中止
+B、推荐使用Thread.current().isInterrupted()，而不是Thread.interrupted()检查自己是否被interrupt
+C、检测到当前线程被interrupt后，应抛出InterruptedException，并在finally或try-with-resource中清理执行状态
+D、调用线程的interrupt方法，只有当线程走到了sleep, wait, join等阻塞这些方法的时候，才会抛出InterruptedException。
+
+2、以下哪些在接收到Thread.interrupt()会抛出InterruptedException异常
+A、Thread.sleep()
+B、java.net.Socket的阻塞方法
+C、java.nio.channels.SocketChannel的阻塞方法
+D、Thread.wait()
+
+3、下面哪些是线程安全的（）
+A、LinkedList
+B、Vector
+C、Hashtable
+D、TreeMap
+E、TreeSet
+F、ConcurrentHashMap
+G、Stack
+
+4、下面说法正确的
+A、FileChannel 从文件读取数据，或将数据写入文件，无法设置为非阻塞模式
+B、DatagramChannel 使用TCP协议通过网络来读写数据
+C、SocketChannel 使用UDP协议通过网络来读写数据
+D、ServerSocketChannel 可以监听新进来的TCP连接
+
+5、以下代码中，可以被gc回收的对象有
+class A{
+
+}
+public class Test{
+    private static A staticA = new A();
+    public static final String CONSTANT = "i am a string";
+
+    public static void main(String[] args){
+        A innerA = new A();
+    }
+}
+
+A、staticA B、CONSTANT C、"i am a string" D、innerA
+ABCD ABCDE ACDF ABC ABD
+6、可能触发fullgc的条件
+A、MaxDirectMemeorySize写满
+B、永生代（Perm）或Metaspace被写满
+C、年老代（tenured）被写满
+D、显示调用System.gc
+
+7、属于java并发库的线程同步类
+A、Exchanger B、Semaphore C、CountDownLatch  D、CyclicBarrier  E、Phaser
+
+8、线程安全的是
+private volatile int a;
+private AtomicInteger b = new AtomicInteger(1);
+public void setA(int a) {
+    this.a = a;
+}
+public void increaseA() {
+    this.a++;
+}
+public int readA() {
+    return a;
+}
+public void setB(int b) {
+    this.b.set(b);
+}
+public void increaseB(int b) {
+    this.b.set(this.b.get() + b);
+}
+public int readB() {
+    return b.get();
+}
+A、setA B、increaseA C、readA D、setB E、increaseB F、readB
+
+
+9、关于溢出描述正确的是
+A、java.lang.OutOfMemoryError: java heap space 可能会导致所有用户线程暂停，不可以通过try/catch解决。
+B、java.lang.StackOverflowError: 线程栈空间不足
+C、java.lang.OutOfMemoryError: PermGen space 是指方法区（永久代）内存溢出
+
+10、以下会使线程进入到阻塞状态的是
+A、wait
+B、sleep
+C、yield
+D、join
+
+Java编程规范，关于空行的用法？
+A. 变量命名之间有空行
+B. 方法之间有两个空行
+C. 大括号行首有空行
+D. 大括号行尾有空行
+以下命名不推荐的是：()
+A、某测试类方法命名：public void test_get_logic_Region_info() throws Exception { }  
+B、某异常类命名：public class ServiceAccess {}  
+C、某泛型类型变量命名：public class Box<T2> {}
+D、某普通类命名：public class XMLService {}
+以下说法正确的是：()
+A、每行限长120个窄字符
+B、每行不超过1个语句
+C、避免文件过长，不超过1000行（非空非注释行）
+D、一个源文件按顺序包含版权、package、import、顶层类，且用空行分隔
+E、避免方法过长，不超过50行（非空非注释行）
+以下说法正确的是：()
+A、换行起点在点号、双冒号、类型&、catch块中管道之前
+B、换行起点在点号、冒号、类型&、catch块中管道之前
+C、换行起点在方法左括号、逗号、lambda箭头和其左大括号之后
+D、换行起点在方法右括号、逗号、lambda箭头和其右大括号之后
+char[]能存放哪些 ()
+A. '\n'
+B. "a"
+C. '\u0012'
+D. '\u12'
+E. '我'
+精度最高的数据类型？
+A. int
+B. long
+C.BigInteger
+D.byte
+哪些语句在编译时不会出现编译警告（）
+A) float f = 1.3; B) byte b=257;
+C) boolean b = null; D) int i = 10;
+以下说法不正确的是：()
+A、Integer i1 = 10; Integer i2 = 10; i1和i2指向同一个对象
+B、整数型包装类型应使用equals做相等的比较
+C、基本类型优于包装类型
+D、浮点型包装类型建议使用equals或flt.compareTo(another)==0做相等的比较
+public static void main(String[] args) {
+	byte b1 = 1, b2 = 2, b3, b6, b8;
+	 
+	final byte b4 = 4, b5 = 6, b7;
+	b3 = b1 + b2;// 语句1
+	b6 = b4 + b5; // 语句2
+	b8 = b1 + b4; // 语句3
+	b7 = b2 + b5; // 语句4
+	System.out.println(b3 + b6);
+}
+上述代码片段中，存在编译错误的语句是（）
+A语句1      B语句2     C语句3     D语句4  
+
+以下代码的执行结果：()
+public static void main(String[] args) {
+    char alpha = 'A';
+    int foo = 65;
+    boolean trueExp = true;
+    System.out.println(trueExp ? alpha : 0);
+	System.out.println(trueExp ? alpha : foo);
+}
+A、A A
+B、65 65
+C、A 65
+D、65 A
+以下代码输出什么 ()
+	List arrayList = new ArrayList();
+	arrayList.add("aaaa");
+	arrayList.add(100);
+	System.out.println((String)arrayList.get(1));
+	 
+	A. 100
+	B. 编译错误
+	C. 运行异常
+	D. aaaa
+如下类型，哪些是值不可变类型
+	 
+	A、char
+	B、Integer
+	C、String
+	D、short
+String str = “a” + “b” + “c” + “d”; 创建了几个对象？
+	A. 4个
+	B. 1个
+	C. 2个
+	D. 3个
+
