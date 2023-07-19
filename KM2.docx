@@ -1746,3 +1746,518 @@ B、按照创建的资源顺序关闭 // 逆序
 C、try中创建的变量在catch和finally可见 // 不在同一作用域
 D、资源关闭在catch和finally中语句执行之前
 
+以下异常列表哪些属于敏感异常？(多选)1234
+A. java.io.FileNotFoundException
+B. java.net.BindException
+C. java.util.ConcurrentModificationException
+D. java.sql.SQLException
+E. java.lang.NullPointerException
+F. java.lang.IllegalArgumentException
+
+以下关于异常的说法正确的是 (多选)13
+A. Throwable是所有Error或Exception的超类
+B. 只有Exception或Exception的子类，才能被catch
+C. Error是正常的应用程序已无能为力的不应该试图捕获的严重问题，如OutOfMemoryError
+D. 编译器会强制要求使用者捕获RuntimeException或声明抛出
+
+下面异常声明不推荐的是 ()2
+A. public Image loadImage(String path) throws FileNotFoundException, EOFException
+B. public Image loadImage(String path) throws IOException
+C. public void drawImage(int num) throws ArrayIndexOutOfBoundsException
+
+以下有关Thread异常处理说法正确的是 (多选)234
+A．子线程自身不必捕获异常，而是由主线程捕获即可
+B．对于运行时异常可调用Thread.setUncaughtExceptionHandler()方法设置运行时异常处理器来进行处理
+C．默认情况下，运行时异常从线程抛出时，会在控制台输出堆栈记录
+D．子线程须自己捕获异常处理
+
+以下描述错误的是：()3
+A、   一般来说，如果使用锁，那么读和写都要加锁，而不是写线程需要加锁，而读的线程可以不加锁。
+B、   创建新线程时需指定线程名
+C、   对线程池(包括ScheduledThreadPoolExecutor)中的线程执行setUncaughtExceptionHandler是有效的
+D、   用java.util.concurrent代替wait()和notify()
+
+下列哪些做法是正确的？（）13
+A. 在finally语句块中关闭流操作，抛出异常时直接忽略该异常，不做任何处理或者仅仅是记录日志
+B. 在打开文件流的catch语句块中忽略可能的异常，让程序继续往下运行。
+C. 程序发生异常，抛出FileNotFoundException、SQLException等敏感异常时，要正确处理异常，防止造成敏感信息泄露风险
+D. 使用捕获NullPointerException的方式替代引用是否为空的判断。
+
+以下说法正确的是 ()134
+A. 调用Thread.interrupt() 用于请求另外一个线程中止执行，而不是直接中止
+B. 推荐使用Thread.current().isInterrupted()，而不是Thread.interrupted()检查自己是否被interrupt
+C. 检测到当前线程被interrupt后，应抛出InterruptedException，并在finally或try-with-resource中清理执行状态
+D. 调用线程的interrupt方法，只有当线程走到了sleep, wait, join等阻塞这些方法的时候，才会抛出InterruptedException
+
+下列哪种情况可以终止当前线程的运行？ ()45
+A. 当一个优先级高的线程进入就绪状态时
+B. 当该线程调用sleep()方法时
+C. 当创建一个新线程时
+D. 抛出一个异常时
+E. 调用wait方法
+
+关于synchronized和lock两者的比较，描述错误的是：()4
+A、   synchronized是Java语言内置的实现，使用简单，无须关注锁的释放与获取，都是JVM自动管理。
+B、   Lock相关的锁，则需要手动获取与释放，稍有不慎，忘记释放锁或者程序处理异常导致锁没有释放，则会造成死锁。
+C、   Lock相关接口可以非阻塞地获取锁。
+D、   两者都不能响应中断，但Lock的tryLock(long time, TimeUnit unit)可以响应超时。
+
+以下哪些在接收到Thread.interrupt()会抛出InterruptedException异常
+A、Thread.sleep()
+B、java.net.Socket的阻塞方法
+C、java.nio.channels.SocketChannel的阻塞方法
+D、Thread.wait()
+答案解析
+正确答案：ACD java.net.Socket 类的方法阻塞时不响应interrupt！写多线程程序时必须回避这些类
+
+以下哪些方法在线程被中断时不会抛出InterruptedException异常：
+A： Thread.sleep()
+B： SocketChannel.write()   
+C： Socket.getOutputStream().write() 
+D： Socket.connect() 
+答案解析
+CD java.net.Socket 类的方法阻塞时不响应interrupt！写多线程程序时必须回避这些类
+
+下列描述中，可能会产生死锁的是: 
+ A．两个或多个线程以不同的顺序请求和释放锁
+ B．在产生阻塞的操作中持有锁
+ C．同步方法或使用对象内置锁的同步代码块中，直接抛出异常
+ D．异常条件下没有正确释放锁
+答案解析
+A、B、D
+
+下列哪种操作可能带来死锁：
+A. lock(m1) lock(m2) unlock(m1) unlock(m2)
+B. lock(m1) lock(m2) unlock(m2) lock(m2) unlock(m1) unlock(m2)
+C. lock(m1) lock(m2) unlock(m1) lock(m1) unlock(m2) unlock(m1)
+D. lock(m1) lock(m2) unlock(m1) unlock(m2) lock(m1) unlock(m1)
+答案解析
+C
+
+关于多线程并发，说法不正确的是：()
+A、创建新线程时需指定线程名
+B、使用Thread对象的setUncaughtExceptionHandler方法注册未捕获异常处理者
+C、建议使用非volatile变量作为通知用的变量
+D、避免不加控制地创建新线程，而应该使用线程池来管控资源
+答案解析
+C
+
+如果信号量（Semaphore）的初始值是2，经过多次wait和signal操作后，信号量的值变为-2，则当前系统处于临界区的进程数和等待进入临界区的进程数是？ ()
+A. 2,2
+B. 2,3
+C. 3,3
+D. 1,2
+答案解析
+A 等待的进程数就是资源量的绝对值。
+
+当线程调用start()后，其所处状态为（）。
+A. 阻塞状态
+B. 运行状态
+C. 就绪状态
+D. 新建状态
+答案解析
+答案：C 有资源才会开始
+
+atomic包下提供的能原子更新数组中元素的类不包括（）
+A. AtomicReference
+B. AtomicIntegerArray
+C. AtomicLongArray
+D. AtomicReferenceArray
+答案解析
+A.AtomicReference为标量类，作用是原子更新引用类型
+
+以下哪种方式创建的线程池适合使用在很耗时的任务（）
+A. Executors.newCachedThreadPool()
+B. Executors.newFixedThreadPool()
+C. Executors.newWorkStealingPool()
+D. Executors.newSingleThreadExecutor()
+答案解析
+答案：C 
+
+Java反射机制的作用包括 (多选)（）1234
+A. 在运行时判断任意一个对象所属的类。
+B. 在运行时构造任意一个类的对象。
+C. 在运行时判断任意一个类所具有的成员变量和方法。
+D. 在运行时调用任意一个对象的方法。
+
+下列有关Java反射的说法错误的是： ( )23
+A. 反射可以获取Method，通过invoke进行方法的调用；
+B. 反射不可以直接通过getField获取私有成员的值；
+C. 反射可以获取注解（@Target为Runtime）信息；
+D. 反射可以获取类的构造器
+答案解析
+A：基操，正确 B：获取到对象的私有字段Field后，然后设定 setAccessible 为true,然后调用字段的get方法，就可以获取到对象的数据了，同时也可以通过反射的方法获取字段的get和set方法来获取需要修改的字段 C：注解@Target没有Runtime，@Retention才有Runtime。反射可以获取注解信息，通过调用class对象的getDeclaredAnnotations()方法。 D：可以
+
+下面哪个不是Class类中定义的反射方法 ()
+A. getDeclaredFields
+B. getDeclaredNames
+C. getDeclaredMethods
+D. getDeclaredConstructors
+答案解析
+B 解析：getName() 获取该类的名称，因为类名唯一，所以没有getNames()
+
+ 关于RandomAccessfile的说法错误的是？ ()3
+A. 内部基于指针形式可以随机读写文件
+B. 可以通过RandomAccessFile的FileChannel间进行mmap操作
+C. RandomAccessFile继承InputStream和OutputStream
+D. RandomAccessFile只能对文件进行操作
+E. 支持r,rw,rws,rwd四种模式
+
+如下代码执行三次的结果 ()
+FileOutputStream outputStream = new FileOutputStream("test.txt", true);
+outputStream.write("ABCDE".getBytes(StandardCharsets.UTF_8));
+outputStream.close();
+ 
+A. ABCDE
+B. ABCDEABCDEACBDE
+C. 编译报错
+D. ABCDE
+  ABCDE
+  ABCDE
+答案解析
+B，new FileOutputStream("text.txt",true) true表示追加，false表示覆盖
+
+为从文本文件中进行读取内容，应该使用哪个处理流文件 ()
+A. BufferedReader
+B. BufferedWriter
+C. BufferedInputStream
+D. BufferedOutputStream
+答案解析
+A
+
+哪个类写操作是线程安全的？ ()
+A. FileWriter
+B. RandomAccessFile
+C. FileOutputStream
+D. FileChannel
+答案解析
+D，FileChannel是线程安全的
+
+字节流、字符流区别描述正确的是： (多选)
+A. 字节流关注流，不关注内容，字符流按行读取，关注文本
+B. 字节流的基类InputStream/OutputStream，字符流是Reader/Writer
+C. 字符流是对字节流的装饰，释放时反向逐一关闭
+D. 字符流最终都会按照字节流处理
+答案解析
+BD
+
+Java IO buffer状态变量不包括？3
+A capacity
+B limit
+C flag
+D position
+
+以下说法正确的是3
+A、临时文件由于会定期被清理掉，所以不用显示的清理临时文件
+B、java.nio包中的Buffer类定义了一系列方法，如wrap()、slice()、duplicate()，这些方法会创建一个新的buffer对象，修改这个新buffer对象不会导致原始的封装数据也被修改
+C、运行一个外部进程时，如果此进程往其输出流发送任何数据，则必须将其输出流清空。类似的，如果进程会往其错误流发送数据，其错误流也必须被清空
+D、Java代码中常用的抽象方法Reader.read()方法用于从流中读取一个字节或字符，返回值的范围为0～65535，所以应定义char类型接收返回值 
+
+有关NIO Selector说法错误的是：
+A 可以设定Selector的监听事件，包括Connect/Accept/Read/Write;（看来机制介绍的还是很清楚的）
+B Selector需要与Channel配合使用，Selector是Channel的复用器；
+C Selector本身不是一个文件，不用Close
+D Selector等事件就绪后，才会返回，避免了大量IO阻塞；
+答案解析
+C
+
+SocketChannel可以向Selector注册哪些事件 
+A、SelectionKey.OP_ACCEPT
+B、SelectionKey.OP_CONNECT
+C、SelectionKey.OP_WRITE
+D、SelectionKey.OP_READ
+答案解析
+ServerSocketChannel的有效事件是OP_ACCEPT，SocketChannel的有效事件是OP_CONNECT、OP_READ、OP_WRITE
+BCD
+
+Socket哪些操作可能会进入阻塞状态 ()
+A. server socket的accpet()监听客户端连接
+B. 执行socket的输出流写数据
+C. 执行socket的输入流读取数据
+D. Socket的getOutputStream()，getInputStream()
+答案解析
+ABC
+
+Runtime.exec()方法与相关联的ProcessBuilder.start()方法可以用来调用外部程序进程，这些外部程序运行时Process对象会产生哪些流（流也会被分别清空吗）（一会再次来解决这个）
+A 错误流
+B 监控流
+C 输出流
+D 输入流
+答案解析
+ACD
+
+建议除非必须使用的第三方接口要求必须实现Serializable接口，否则不建议使用的原因包括：()12345
+A： 序列化对外公开了对象的物理实现
+B： 序列化容易使一个类对其最初的内部表示产生依赖
+C： 编写正确的反序列化代码有很大的挑战
+D： 序列化增大了安全风险
+E： 序列化增加了测试的难度
+
+下面对Java反序列化的描述正确的是： ()
+A. jdk提供的序列化操作，会将Java对象序列化二进制流，可以有效防止信息泄露或恶意篡改
+B. Java的反序列化操作，可以绕过对象构造函数的执行
+C. 对象序列化后，即使包含敏感数据也不会产生风险
+D. Java反序列化时，目标class与预期class不一致时，会导致类型转换错误，所以即使反序列化不可信数据也不会有安全风险
+答案解析
+B
+
+对于不安全反序列化漏洞的防护描述错误的是： ()
+A. XMLDecoder是jdk原生类，提供了xml的反序列化操作，所以相对Xstream，更推荐使用XMLDecoder进行xml数据的反序列化操作
+B. 使用jdk原生api进行反序列化操作，涉及不可信数据时，可以重载ObjectInputStream的resolveClass()方法，在该方法中对目标class进行白名单校验
+C. 对不可信的XML数据进行反序列化操作，推荐使用XStream实现，该组件支持白名单检查，新版本也提供了默认安全校验机制
+D. 对不可信的json数据进行反序列化操作，可通过禁止开启type功能进行防护
+答案解析
+A
+
+以下说法正确的是 ()
+A. 临时文件由于会定期被清理掉，所以不用显示的清理临时文件
+B. java.nio包中的Buffer类定义了一系列方法，如wrap()、slice()、duplicate()，这些方法会创建一个新的buffer对象，修改这个新buffer对象不会导致原始的封装数据也被修改
+C. 运行一个外部进程时，如果此进程往其输出流发送任何数据，则必须将其输出流清空。类似的，如果进程会往其错误流发送数据，其错误流也必须被清空
+D. Java代码中常用的抽象方法Reader.read()方法用于从流中读取一个字节或字符，返回值的范围为0～65535，所以应定义char类型接收返回值
+答案解析
+C
+
+关于序列化说法不正确的是 ()
+A. 序列化只能保存对象的非静态成员交量，不能保存任何的成员方法和静态的成员变量
+B. transient关键字的作用是：阻止实例中那些用此关键字声明的变量持久化
+C. 当一个父类实现序列化，子类若要实现序列化，需要显式实现Serializable接口
+D. 一个子类实现了Serializable接口，它的父类都没有实现Serializable接口，要想将父类对象也序列化，就需要让父类也实现Serializable接口
+答案解析
+C
+
+以下说法正确的是：()
+A、不要在代码中硬编码"\n"和"\r"作为换行符号，建议使用System.lineSeparator()方法获取运行时环境的换行符
+B、编码时尽量依赖平台默认的字符编码方式
+C、String类的toUpperCase()和toLowerCase()方法、format()方法，建议使用默认的编码模式进行转换
+D、使用java.nio.charset中的类编码解码字符集
+答案解析
+AD
+
+防止未加密的敏感数据被序列的方法有 
+A、使用transient定义敏感数据
+B、使用serialPersistentFields定义非敏感数据
+C、重新定义Serializable接口的 writeObject()、writeReplace()、writeExternal()这些函数，不将包含敏感信息的字段写到序列化字节流中。
+D、在序列化与反序列化涉及的 writeObject()和readObject()方法中使用安全管理器
+答案解析
+ABCD
+
+PreparedStatement.setInt(int parameterIndex, int x)参数的含义 ()
+A. 把第parameterIndex-1的参数值设置为x
+B. 把第parameterIndex的参数值设置为x
+C. 把第x-1的参数值设置为parameterIndex
+D. 把第x的参数值设置为parameterIndex
+答案解析
+B 从1开始的数据
+
+在java中，使用JDBC时，使用PreparedStatement执行sql语句有哪些好处 (多选)
+A. 使用PreparedStatement进行sql注入防护是优选方案
+B. 使用PreparedStatement多次执行同一条sql语句可以提升执行的效率
+C. 使用PreparedStatement可以有效解决所有的sql注入问题
+D. 正确使用PreparedStatement，可以有效防止sql注入的发生
+答案解析
+ABD
+
+Statement 和 PreparedStatement之间的关系和区别
+A PreparedStatement和Statement,都是接口	
+B SQL 语句被预编译并存储在 PreparedStatement 对象中。然后可以使用此对象多次高效地执行该语句，执行效率高。
+C 说的sql直接用Statement执行，执行效率高
+D 没有参数的SQL语句建议使用Statement执行
+答案解析
+AB
+
+如果在构造复杂sql语句查询时，预编译的sql语句生成方法不够灵活，需要开发者手动拼接sql，现在输入参数已将 ' 、 " 符号转义，请问如下针对mysql数据库的查询中，哪条是有可能受到sql注入攻击的？ (多选)
+A. "select * from users where id=" + request.getParameter("id");
+B. "select * from users where username='" + request.getParameter("username") + "' and password='" + request.getParameter("password") + "' limit 1";
+C. "select * from papers where title='" + request.getParameter("title") + "'";
+D. "select * from papers where time='xxxxx' order by " + request.getParameter("columnName");
+答案解析
+AD
+
+关闭JDBC资源，需要先后关闭如下哪些资源（多选）
+A. DriverManager
+B. Connection
+C. Statement
+D. ResultSet
+答案解析
+BCD
+
+在执行JDBC查询数据库时，假设物理内存足够用，如果查询结果集ResultSet要返回的记录数很多，比如上百万记录，则下列选项中对ResultSet的fetchsize属性描述正确的是：()
+A. ResultSet的fetchSize越大，数据库服务端消耗的内存越小，性能也越快
+B. ResultSet的fetchSize越大，数据库服务端消耗的内存越大，性能也越快
+C. ResultSet的fetchSize越大，JDBC client端消耗的内存越大，性能也越快
+D. ResultSet的fetchSize越大，JDBC client端消耗的内存越小，性能也越快
+答案解析
+C 结果集合的获取
+
+有关ORM的说法错误的是（）
+A ORM的缓存机制可以提高数据操作性能Hibernate没有缓存机制；
+B ORM依赖于JDBC和DataSource;
+C ORM有多种实现，主流的Mybatis与Hibernate;
+D ORM、对象关系转换，即数据库的单条数据与Java对应之间的映射；
+答案解析
+A
+
+下面关于jmap说法不正确的是（）
+A. 使用jmap可以查看堆中对象的统计信息，包括类名，对象数量和内存大小
+B. 使用jmap可以把java堆中的对象dump到本地文件
+C. 使用jmap可以定位线程死锁的问题
+D. 使用jmap可以打印java堆的配置情况和使用情况，还有使用的GC算法
+答案解析
+C
+
+以下Jmap说法错误的是(  )
+A. 打印Java堆概要信息，包括使用的GC算法、堆配置参数和各代中堆内存使用情况；
+B. 可以将Java堆信息Dump到文件内
+C. 可以查看JVM配置参数和运行的JVM 参数 
+D. 可以获取每个class的对象数目，占用内存大小和类全名信息
+答案解析
+C // jInfo 的作用
+
+java进程频繁GC，用哪种工具定位：
+A．jstat
+B．jmap
+C．jstack
+D．jinfo
+答案解析
+B 频繁GC 查看内存使用 jmap
+
+关于jvisualvm，以下说法正确的是（）
+A. jvisualvm无法监控远程服务器的运行状态
+B. 运行jvisualvm，需要配置环境、设置Java程序工程以及虚拟机参数等
+C. jvisualvm可以在Java程序运行起来以后再运行，通过某些协议连接到Java进程中
+答案解析
+C
+
+（单选） 以下可用于分析线程死锁问题的命令是
+A．jmap
+B．jhat
+C．jstack
+D．jstat
+答案解析
+C
+
+哪个命令监控java进程的gc情况：
+A．jstat
+B．jmap
+C．jstack
+D．jinfo
+答案解析
+A
+
+JVM强制不使用编译器
+A. -client
+B. -server
+C. -Xint
+D. -Xcomp
+答案解析
+解析：C-Xint 解释模式；-Xcomp 编译模式； -Xmixed混合模式
+
+使用javac编译时，包含以下哪几个过程：()124
+A. 语义分析及生成字节码
+B. 词法分析及填充符号表
+C. Server Compiler
+D. 注解处理
+E. Client Compiler
+
+识出垃圾后，需要回收，有关回收的说法错误是：3
+A 复制copy后，即把内存区域分成两个等分，from区域与to区域，都从from区分内存，回收即是把from区域还在使用的内存，copy到to内存,….，比较消耗内存；（看来不同的路线，选择机制还是不一样的）
+B 压缩compact，重新整理达在使用的内存，一般做法是把还在使用的内存前移，填充回收空间，留下一大片连续的内存；压缩的问题是开销大；（这块需要反复计算才可以解决）
+C Java的GC机制会选择其中一种方法进行垃圾回收；（GC的回收过程中多种回收机制一起处理的结果）
+D 消除Sweep，直接清除，方法简单，但是会造成内存碎片，给再分配造成不可抑制的麻烦；（这个缺点是很明显的）
+
+垃圾回收算法（）1234
+A.引用计数 
+B.标记清楚
+C.复制 
+D.分块 
+
+不能作为GC Root的对象: 2
+A．方法区中类静态属性引用的对象
+B．方法区内类非静态属性引用的对象
+C．方法区中常量引用的对象
+D．本地方法中JNI引用的对象
+
+关于主动调用gc方法的描述，下列说法正确的是（）124
+A. 在频率/周期性的逻辑中更要尽量 避免主动GC的调用
+B. 在GC过程中的某些阶段程序会完全停顿，这会让程序失去响应，对系统造成非常大的风险
+C. 调用主动GC方法后，系统立即进行垃圾回收操作
+D. 如果触发了JVM的全量GC操作，会增加gc的次数，也就增加了程序因为GC而停顿的时间
+
+指定堆外内存最大值使用什么参数（）3
+A. -Xmx
+B. -XX:PermSize
+C. -XX:MaxDirectMemorySize
+
+设置新生代内存50M用什么参数（）3
+A. -Xmx50m =>java heap最大值
+B. –Xms50m =>java heap初始值，默认为操作系统wuli内存的1/64但小于1G
+C. –Xmn50m =>java heap Young区，即新生代的大小
+D. –Xss50m =>每个线程的堆栈大小
+
+针对DT FUZZ测试，下面的说法正确的是（）1
+A. DT FUZZ测试中，如果被测函数代码有修改，但被测函数被调用逻辑没有修改，不需要修改测试用例
+B. 尽量选择模块外层函数为被测目标，编写测试用例，测试过程中，本模块内部函数可以随意打桩存疑
+C. DT FUZZ测试，编写测试用例可以不考虑函数的调用上下文
+D. 结构化的参数DT FUZZ工具都可以构造
+
+关于逻辑覆盖，下列说法正确的有234
+A. 100%的判定覆盖无法保证100%的语句覆盖，若判定覆盖达到100%，则语句覆盖必为100%
+B. 判定覆盖无法保证一定能查出判断条件存在的错误，即使语句覆盖率达到了100%，也不能发现其中的逻辑错误
+C. 100%的条件覆盖不一定满足100%的判定覆盖覆盖条件的测试用例不一定覆盖判定
+D. 100%的判定条件覆盖可以保证100%的条件覆盖判定-条件覆盖率实际上就是判定覆盖率和条件覆盖率的组合
+
+输入条件是有N个取值的枚举量，则等价类划分结果是（）个有效等价类和（）个无效等价类1
+A. N,1
+B. N,2
+C. 1,1
+D. N,0
+
+在某大学学籍管理信息系统中，假设学生年龄的输入范围为16—40，则根据黑盒测试中的等价类划分技术，下面划分正确的是2
+A. 可划分为2个有效等价类，2个无效等价类
+B. 可划分为1个有效等价类，2个无效等价类
+C. 可划分为2个有效等价类，1个无效等价类
+D. 可划分为1个有效等价类，1个无效等价类
+
+某系统有三个输入A,B,C，每个输入的取值个数分别为4,6,7，使用EC（单一选择组合）方法设计测试用例，至少需要设计（）个用例2
+A. 3 B. 7 C. 15 D. 17
+答案解析
+EC(单一选择组合): 所有因子中取值最多的那个因子的取值个数 BC(基本选择组合): 所有因子取值个数和 - 因子个数 + 1 AC(全组合): 所有因子取值个数的乘积
+
+测试代码与业务代码质量要求一样，用例写作遵循FIRST原则：
+F：Fast，执行要快，要求测试用例粒度要小；
+I：Independent，独立，对其他测试没有依赖，可以单独执行；
+R：Repeatable，每次测试结果要相同，才能有效回归测试，必须与外部环境无关；
+S：Self-Validating，测试结果应该是简单明确的true or false；
+T：Timely，测试代码和生产代码同步输出，及时验证；
+测试执行应确保与外部环境无关，避免用例随机失败，确保满足测试用例（）原则
+A. 解耦
+B. 可重复
+C. 一致性
+D. 及时反馈
+答案解析
+题目分析：B：可重复，测试通常会被放到持续集成中，每次有代码check in时单元测试都会被执行。
+
+高效可靠的测试对于重构至关重要，在已经有较完善的白盒测试的情况下，由于代码规模巨大测试反馈时间很长，为了在重构代码的过程中保证有效验证的同时减少测试反馈时间提升效率，正确的做法是()
+A. 不做白盒测试，直接进行系统功能验证，减少测试次数
+B. 每次随机选取部分测试用例执行，以减少每次测试工作量
+C. 选择与修改代码有关的数据和测试用例，减少测试执行范围
+D. 不论修改影响范围如何都应该进行全覆盖测试，保证不出问题
+答案解析
+C 题目分析：A随机选取偶然性大，不可取；B基本的白盒测试还是需要的，把错误透到后端，问题定位代价大，效率低；C正确；D全覆盖测试效率低，要通过归类等方法对测试数据进行合并。
+
+良好的测试防护网是重构成功的重要前提，其中单元测试是构建测试防护网常用的手段。下述哪种做法是重构过程中较好的单元测试行为（ ）
+A. 重构过程中，一旦修改代码，为了保证修改正确性，就对所有测试用例进行全量覆盖测试。
+B. 为了减少重复，将多个前置条件相同（如输入相同）的功能点在一个测试用例里进行合并测试。
+C. 被测对象依赖了外部接口，为了便于观察调用行为，对外部接口打桩，并通过printf等输出打印信息进行观察。
+D. 重构过程中，为了提升测试效率，优先设计与修改代码有关的测试用例。
+答案解析
+D 题目分析：选项A不符合单一原则；选择B不符合自确认原则；选项C正确，符合测试景深的思想；选项D修改的代码可多可少，从反馈效率上考虑，不建议所有情况都进行全量测试。
+
+某项目对于存量代码进行重构，需要补充测试防护网，他们的做法中错误的是()
+A. 重构过程中对代码有新的理解或者发现新的问题时逐步补充新的测试用例
+B. 在重构代码前先对需要修改的代码补充自动化测试用例
+C. 测试用例可以自动化执行，但是需要开发人员人工确认执行结果是否符合预期
+D. 要求测试必须补充到非常完善充分以后，才可以修改代码，使得团队在前一大半时间都在补充用例，实际没有重构多少代码
+答案解析
+CD
+
