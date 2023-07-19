@@ -1450,6 +1450,7 @@ public class Test{
 }
 
 A、staticA B、CONSTANT C、"i am a string" D、innerA
+
 ABCD ABCDE ACDF ABC ABD
 6、可能触发fullgc的条件
 A、MaxDirectMemeorySize写满
@@ -1495,46 +1496,53 @@ B、sleep
 C、yield
 D、join
 
-Java编程规范，关于空行的用法？
+Java编程规范，关于空行的用法？1
 A. 变量命名之间有空行
 B. 方法之间有两个空行
 C. 大括号行首有空行
 D. 大括号行尾有空行
-以下命名不推荐的是：()
+
+以下命名不推荐的是：()124
 A、某测试类方法命名：public void test_get_logic_Region_info() throws Exception { }  
 B、某异常类命名：public class ServiceAccess {}  
 C、某泛型类型变量命名：public class Box<T2> {}
 D、某普通类命名：public class XMLService {}
-以下说法正确的是：()
+
+以下说法正确的是：()1245
 A、每行限长120个窄字符
 B、每行不超过1个语句
 C、避免文件过长，不超过1000行（非空非注释行）
 D、一个源文件按顺序包含版权、package、import、顶层类，且用空行分隔
 E、避免方法过长，不超过50行（非空非注释行）
-以下说法正确的是：()
+
+以下说法正确的是：()13
 A、换行起点在点号、双冒号、类型&、catch块中管道之前
 B、换行起点在点号、冒号、类型&、catch块中管道之前
 C、换行起点在方法左括号、逗号、lambda箭头和其左大括号之后
 D、换行起点在方法右括号、逗号、lambda箭头和其右大括号之后
-char[]能存放哪些 ()
+
+char[]能存放哪些 ()135
 A. '\n'
 B. "a"
 C. '\u0012'
 D. '\u12'
 E. '我'
-精度最高的数据类型？
+
+精度最高的数据类型？3
 A. int
 B. long
 C.BigInteger
 D.byte
-哪些语句在编译时不会出现编译警告（）
+
+哪些语句在编译时不会出现编译警告（）4
 A) float f = 1.3; B) byte b=257;
 C) boolean b = null; D) int i = 10;
-以下说法不正确的是：()
+以下说法不正确的是：()4
 A、Integer i1 = 10; Integer i2 = 10; i1和i2指向同一个对象
 B、整数型包装类型应使用equals做相等的比较
 C、基本类型优于包装类型
 D、浮点型包装类型建议使用equals或flt.compareTo(another)==0做相等的比较
+
 public static void main(String[] args) {
 	byte b1 = 1, b2 = 2, b3, b6, b8;
 	 
@@ -1545,10 +1553,10 @@ public static void main(String[] args) {
 	b7 = b2 + b5; // 语句4
 	System.out.println(b3 + b6);
 }
-上述代码片段中，存在编译错误的语句是（）
+上述代码片段中，存在编译错误的语句是（）134
 A语句1      B语句2     C语句3     D语句4  
 
-以下代码的执行结果：()
+以下代码的执行结果：()3
 public static void main(String[] args) {
     char alpha = 'A';
     int foo = 65;
@@ -1560,25 +1568,62 @@ A、A A
 B、65 65
 C、A 65
 D、65 A
-以下代码输出什么 ()
-	List arrayList = new ArrayList();
-	arrayList.add("aaaa");
-	arrayList.add(100);
-	System.out.println((String)arrayList.get(1));
-	 
+
+以下代码输出什么 ()3
+List arrayList = new ArrayList();
+arrayList.add("aaaa");
+arrayList.add(100);
+System.out.println((String)arrayList.get(1));
 	A. 100
 	B. 编译错误
 	C. 运行异常
 	D. aaaa
-如下类型，哪些是值不可变类型
-	 
+
+如下类型，哪些是值不可变类型23
 	A、char
 	B、Integer
 	C、String
 	D、short
-String str = “a” + “b” + “c” + “d”; 创建了几个对象？
+
+String str = “a” + “b” + “c” + “d”; 创建了几个对象？2
 	A. 4个
 	B. 1个
 	C. 2个
 	D. 3个
 
+Java类加载表述正确的是()1
+A URLClassLoader的签名校验依赖jar包里的公钥，因此不能使用URLClassLoader来校验jar的合法性；
+B 在JVM中将不同的ClassLoader实例加载的同一个类视为相同的类；
+C 开发者不可以自定义类加载器
+D. 当自定义一个类加载器时，为了保证赋予权限的完整，应该直接覆写getPermissions()方法，无需调用基类的getPermission()方法
+
+当一个自定义的类装载器要覆写getPermissions()方法的时候，如果没有调用父类的getPermissions方法来获取默认的系统规则，则（）24
+A. 该类自定义的权限不会生效。
+B. 该自定义类加载器加载的类具有的权限就会完全独立于系统全局策略文件规定的权限
+C. 除了自定义策略外，系统全局的默认安全策略也被应用。
+D. 该类的权限覆盖了这些系统全局文件规定的权限。
+
+关于SecurityManager说法正确的是1234
+A、可以用来控制加载某些类
+B、可以用来控制能否读取系统参数
+C、可以用来控制能否自己停止线程
+D、可以用来控制监听端口
+
+grant permission java.util.PropertyPermission "java.version", "read" // 设置权限
+  public static void main(String[] args) {
+    String javaVersion=System.getProperty("java.version");
+    System.err.println(javaVersion);
+    System.setProperty("java.version","1.7.0_45");
+    String javaNewVersion=System.getProperty("java.version");
+    System.err.println(javaNewVersion);
+ }
+输出：权限不足
+
+子类不可以覆写父类的那些方法？123
+A. final
+B. static
+C. private
+D. void
+
+父类的哪个不能被子类隐藏：()1
+A：私有方法  B：属性  C：内部类  D：静态方法
