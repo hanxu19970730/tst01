@@ -1,0 +1,691 @@
+1.以下代码中1和2处代码的输出分别是
+public class Email
+{
+public String address;
+    public Email(String address) 
+   { 
+            this.address = address; 
+    } 
+    public int hashCode() 
+   { 
+            int result = address.hashCode(); 
+            return result; 
+    } 
+    public static void main(String[] args) 
+  { 
+            HashSet<Email> set = new HashSet<Email>(); 
+            Email email = new Email("huawei.com"); 
+            set.add(email); 
+            email.address = "silong.com";
+            System.out.println(set.contains(email)); //1
+            set.remove(email);
+            System.out.println(set.size());  //2
+    } 
+} 正确答案：A
+A、false,1
+B、true,1
+C、false,0
+D、true,0
+
+2.当方法遇到异常又不知如何处理时，下列哪种说法是正确的 正确答案：C
+A、捕获异常
+B、抛出异常
+C、声明异常
+D、嵌套异常
+
+3.关于线程同步说法错误的是哪个 正确答案：D
+A、禁止将系统内部使用的锁对象暴露给不可信代码
+B、禁止使用Thread.stop()来终止线程
+C、禁止使用一个实例锁来同步共享静态数据
+D、禁止使用不正确形式的双重锁定检查  --- 没有明确规定
+
+4.下面哪个重写方法是用于子类和父类之间的 正确答案：B
+A、重载（overload）
+B、隐藏（hide）
+C、遮蔽（shadow）
+D、遮掩（obscure）
+
+5.哪些是子类与父类间重用名字可以使用的操作方法？ 正确答案：AC
+A、覆写（override）
+B、重载（overload）
+C、隐藏（hide）
+D、遮掩（obscure）
+
+6.Socket不提供但是SSLSocket提供的主要保护不包括 正确答案：D
+A、完整性保护
+B、认证
+C、保密性（隐私保护）
+D、可移植性
+
+7.传递敏感数据时，使用哪个类 正确答案：A
+A、SSLSocket
+B、Socket
+C、http
+D、 https
+
+8.覆写equals方法时，需要同时覆写hashCode方法
+
+非静态内部类可以实现下列哪种接口？正确答案：C
+A、Serializable
+B、Externalizabl
+C、Comparable
+D、以上都不可以
+
+10.TransformerFactory 设置下面哪个feature可使xslt在转换XML过程中避免被注入执行任意程序恶意代码的问题 正确答案：B
+A、http://apache.org/xml/features/disallow-doctype-decl
+B、http://javax.xml.XMLConstants/feature/secure-processing
+C、http://xml.org/sax/features/external-general-entities
+D、http://xml.org/sax/features/external-parameter-entities
+
+11.使用TransformerFactory转换XML格式数据的时候，添加安全策略对xslt内置黑名单的方法是：
+1）
+TransformerFactory tf = TransformerFactory.newInstance();
+tf.setFeature(“http://javax.xml.XMLConstants/feature/secure-processing”, true);
+2）
+TransformerFactory tf = TransformerFactory.newInstance();
+tf.setFeature(“http://javax.xml.XMLConstants/feature/secure-processing”, false);
+3）
+TransformerFactory tf = TransformerFactory.newInstance();
+tf.setFeature(“http://xml.org/sax/features/external-general-entities”, false);
+4）
+TransformerFactory tf = TransformerFactory.newInstance();
+tf.setFeature(“http://xml.org/sax/features/external-general-entities”, true); 正确答案：A
+A、1)
+B、2)
+C、3)
+D、4)
+
+12.下面哪个说法是正确的 正确答案：A
+A、禁止序列化非静态的内部类
+B、禁止序列化静态的内部类
+C、禁止序列化非静态的外部类
+D、禁止序列化静态的外部类
+
+13.在哪个情况下，需要使用SSLSocket套接字 正确答案：D
+A、套接字上传输的数据不敏感
+B、数据虽然敏感，但是已经过恰当加密
+C、套接字的网络路径从来不越出信任边界
+D、不安全的传输通道中传输敏感数据
+
+14.以下哪个不属于Java对象的hashCode方法的约定 正确答案：B
+A、如果两个对象调用equals方法时不相等，则这两个对象的hashCode方法，不要求其返回值不同，但是出于性能考虑，但最好能不同
+B、与常量比较，优先 java.util.Objects#equals；与变量比较，优先"test".equals(object)
+C、如果两个对象调用equals方法时相等，则这两个对象的hashCode方法，也必须返回相同的值
+D、同一次运行中，同一个对象如果equals方法中用到的信息没有改变，多次调用hashCode方法返回值必须相同
+
+15.一段使用ZipInputStream对压缩文件进行解压的代码如下，在[1]处填入适合的关键字是（）正确答案：A
+public RandomAccessFile openFile(java.io.File f) {
+[1] java.io.File copyFile = new java.io.File(f.getPath());
+askUserPermission(copy.getPath());
+//…
+return (RandomAccessFile) AccessController.doPrivileged(new PrivilegedAction() {
+public Object run() {
+try {
+return new RandomAccessFile(copyFile, copyFile.getPath());
+} catch (Exception e) {
+//…
+}
+return null;
+}
+});
+}
+A、final
+B、static
+C、volatile
+D、private
+
+16.字段与字段之间可以不用空行隔开
+
+17.关于跨信任边界传递的不可信数据说法错误的是？正确答案：C
+A、为了确保输入数据是“安全”的，可以剔除或者转换某些字符
+B、对任何不属于已验证合法字符数据中的字符进行净化，然后再使用净化后的数据
+C、负向校验相对于正向校验，是一种较强的校验方式
+D、白名单校验是检查数据是否属于一个严格约束的、已知的、可接受的合法数据
+
+18.FetchSize 越大，客户端性能越快。
+FetchSize是设定JDBC的 Statement读取数据的时候每次从数据库中取出的记录条数。
+
+19.NIO包含哪些Buffer？
+8中基本类型中唯独没有boolean
+ByteBuffer
+MappedByteBuffer
+ShortBuffer
+CharBuffer
+IntBuffer
+LongBuffer
+FloatBuffer
+DoubleBuffer
+
+20.
+
+关于遮掩，说法不正确的是
+A如果一个类或者一个包被遮掩了，那么不能通过其简单名引用到它，除非是这样一个上下文环境中，即语法只允许在其名字空间中出现一种名字
+B遮掩是唯一一种两个名字位于不同的名字空间的名字重用形式
+C一个变量不可以遮掩具有相同名字的一个类，即使它们都在同一个范围内；
+D如果这个名字被用于变量与类都被许可的范围，那么它将引用到变量上。
+答案：C
+
+21.基于Happens-before规则，处理并发时下列哪个优先使用
+A、BlockingQueue
+B、synchronized
+C、lock
+答案：A
+
+22根据通用规范，方法注释中不应出现如下：
+A、线程安全
+B、修改日期
+C、性能约束
+D、api特性、原理
+答案：B
+
+23.关于Linux的IO模型，说法错误的是 
+A. Linux的IO模型分为五种，阻塞IO，非阻塞IO，多路复用IO，信号驱动，异步IO
+B. 大部分高性能的IO中间件，如nignx，都是使用多路复用IO
+C. 多路复用IO没有一个线程需要被阻塞
+D. 多路复用IO依赖操作系统的能力，具体而言就是select/poll/epoll
+答案：C
+
+24.将list转换为数组时最佳SIZE ()
+List<String> list = new ArrayList<>(DEFAULT_CAPACITY);
+list.add("1");
+list.add("2");
+String[] array = list.toArray(new String[SIZE]);
+A. 0
+B. 1
+C. 2
+D. 3
+答案：A
+
+25.以下声明，建议使用的是 
+A. 泛型数组：private final T[] someArray;
+B. 协变化的数组：private final Object[] objArray;
+C. 泛型列表：private final List lists;
+答案：C
+
+26.java中用来对字符串做归一化的方法是 ()
+A. java.lang.String.intern()
+B. java.lang.String.trim()
+C. java.text.Format.format()
+D. java.text.Normalizer.normalize()
+答案：D
+
+27.以下代码输出结果是 
+String srcTxt = "123\\d";
+String rst1 = srcTxt.replaceAll("\\d", "456");
+String rst2 = srcTxt.replaceAll(Pattern.quote("\\d"), "456");
+String rst3 = srcTxt.replace("\\d", "456");
+System.out.println(rst1);
+System.out.println(rst2);
+System.out.println(rst3);
+A.456456456\d
+123456
+456456456\d
+B.456456456\d
+123456
+123456
+答案：B
+
+28.动态代理扩展类是在什么阶段执行的？ 
+A. 初始化
+B. 准备
+C. 解析
+D. 加载
+答案：D
+
+29.业务处理日志用()级别
+A. error
+B. debug
+C. warn
+D. info
+答案：D
+
+30.JVM GC性能指标吞吐量是指 ()
+A. CPU运行时间内GC运行的次数
+B. CPU运行用户代码的时间与CPU总消耗时间的比值
+C. CPU运行时间内GC运行次数与所有运行线程次数的比值
+D. CPU运行GC线程的时间与用户代码的时间的比值
+答案：B
+
+31.定义本地方法正确的是 
+A. public void native XXX();
+B. public native void XXX();
+C. public native void XXX() {}
+D. public void static native XXX();
+答案：B
+
+32.根据安全编程规范，Java类加载表述正确的是
+A. URLClassLoader的默认签名检查依赖jar包中的公钥，因此不能仅依赖该机制对jar包进行合法性检查
+B. 开发者不可以自定义类加载器
+C. 在JVM中，将不同ClassLoader实例加载的同一个类视为相同类
+D. 当自定义一个类加载器时，为了保证赋予权限的完整，应该直接覆写getPermissions()方法，无需调用基类的getPermission()方法
+答案：A
+
+33.UT测试中，判断两个值是否相等用哪一个
+A. AssertNull
+B. AssertSame
+C. AssertEquals
+D. AssertNotEquals
+答案：C
+
+34.完全采用解释器模式运行，设置哪一个参数
+A. –client 指定使用 client VM 来运行
+B. –server 指定使用 server VM 来运行
+C. –Xcomp 完全采用即时编译器模式执行程序
+D. –Xint 完全采用解释器模式运行
+答案：D
+
+35.
+
+JIT监控热点代码，问有哪些？
+A、静态变量
+B、频繁调用的方法
+C、有锁的代码
+D、多次执行的循环体
+答案：BD
+
+36.预防ReDos攻击，比较有效的防护手段有（）
+A. 进行正则匹配前，先对匹配的文本的长度进行校验
+B. 在编写正则时，尽量不要使用过于复杂的正则，越复杂越容易有缺陷
+C. 在编写正则时，尽量减少分组的使用
+D. 避免动态构建正则，当使用不可信数据构造正则时，要使用黑名单进行严格校验
+答案：ABC
+
+37.下列说法错误的是（）
+A反射可以获取类的构造器
+B反射可获以Method,通过invoke进行方法的调用；
+C反射可以获取注解（@Target为Runtime）信息；
+D反射能够直接get(obj)获取私有的Field成员的值；
+答案：CD
+
+38.关于数据校验的说法正确的是（）
+A.在对不可信数据进行校验时，禁止使用assert语句
+B."白名单"方式净化的方式包括删除，编码 ，替换
+C."黑名单"或"负向"校验，相对于正向校验，这是一种较弱的校验方式，如果不定期研究新的攻击方式并对校验的表达式进行日常更新 ，该校验方式就会很快过时
+D.尽可能使用接收一直合法数据的白名单策略
+答案：ABCD
+
+39.仅保存口令hash，不加盐的缺陷有
+A.攻击者可以使用实现计算好的哈希列表在几秒钟之内破解口令
+B.加入盐值可以减慢hash的计算速度，减慢攻击者的速度，不加盐值，攻击者计算哈希的速度大大增加
+C.没有盐值，攻击者可以根据哈希值反向解密出原始口令
+D.由于"生日判定"，攻击者可以快速找到一个口令，尤其是当数据库中的口令数量加大的时候
+答案：ABD
+
+40.关于Optional说法正确的是？
+A.Optional可以被赋值为null
+B.Optional.of()可以用null做参数，返回Optional.empty()
+C.Optional.ofNullable(obj),obj不为null时直接调用Optional.of(obj)
+D.Optional.of()可以放置集合或对象。
+答案：CD
+
+41.常见的xml实体解析导致的安全风险有那几种？
+ A  内部实体拓展
+ B  xml注入
+ C  xPath注入
+ D  XXE（外部实体注入）
+答案：AD
+
+42.以下哪些攻击方式是针对XML数据应用 
+A  外部实体注入（XXE）
+B  LDAP注入  -- 轻型目录访问协议，输入没有校验可能会导致目录攻击
+C  内部实体拓展
+D  XPath注入
+答案：ACD
+
+43.下列操作中可导致任意代码执行的操作有哪些？
+A. 使用不安全的XSLT转换XML文件
+B. 对不可信数据进行反序列化操作
+C. 使用不可信数据拼接sql语句
+D. 使用不可信数据拼接命令行
+答案：ABD
+
+44.以下说法正确的是
+A. 要在多个线程间安全的同步共享数据就必须使用锁，新的并发工具包中的线程安全对象或者其它具有锁效应的线程安全数据结构
+B. 建议使用线程组 ThreadGroup 来管理线程资源
+C. 缺省的线程名 Thread-n 无法区分出是哪个线程，给问题定位带来不便
+D. Thread.yield() 对线程调度器仅仅是个提示，不保证确定的效果，因此代码也不能依赖 Thread.yield()方法
+答案：ACD
+
+45.下面说法正确的是
+A. FileChannel从文件读取数据，或将数据写入文件，无法设置为非阻塞模式
+B. DatagramChannel使用TCP协议通过网络来读写数据
+C. SocketChannel使用UDP协议通过网络来读写数据
+D. ServerSocketChannel可以监听新进来的TCP连接
+答案：AD
+
+46.默认jvm参数运行时，会做哪些优化？
+A. JITTest.doubleIndex被内联
+B. JITTest.doubleIndex会被编译成机器码执行
+C. JITTest.sum会被编译成机器码执行
+D. 拆箱和装箱
+答案：ABC
+
+47.安全编程规范中，下面说法正确的有 
+A. 创建文件时指定合理的访问权限
+B. 对所有外部输入进行校验
+C. 记录日志时可以抛异常出   -- 不可以抛异常
+D. 禁止不受信任的代码直接终止JVM
+答案：ABD
+
+48.使用javac编译时，包含以下哪几个过程？ 
+A. 语义分析及生成字节码
+B. 词法分析及填充符号表
+C. Server Compiler
+D. 注解处理
+E. Client Compiler
+答案：ABD
+
+49.以下有关Thread异常处理说法正确的是 
+A．子线程自身不必捕获异常，而是由主线程捕获即可
+B．对于运行时异常可调用Thread.setUncaughtExceptionHandler()方法设置运行时异常处理器来进行处理
+C．默认情况下，运行时异常从线程抛出时，会在控制台输出堆栈记录
+D．子线程须自己捕获异常处理
+答案：BCD
+
+50.下面关于字符流和字节流说法正确的是 
+A. 字符向字节转换时，需要注意编码问题
+B. 字节流继承于InputStream OutputStream，字符流继承于InputSteamReader OutputStreamWriter
+C. 字符流使用了缓冲区(Buffer)，而字节流没有使用缓冲区
+D. 字符是字节通过不同编码的包装，相同的字节代表相同的字符
+
+答案：ABC
+
+51.可能触发fullgc的条件 
+A. MaxDirectMemeorySize写满
+B. 永生代（Perm）或Metaspace被写满
+C. 年老代（tenured）被写满
+D. 显示调用System.gc
+答案：ABCD
+
+52.SocketChannel可以向Selector注册哪些事件 
+A. SelectionKey.OP_ACCEPT
+B. SelectionKey.OP_CONNECT
+C. SelectionKey.OP_WRITE
+D. SelectionKey.OP_READ
+答案：BCD
+
+53.当直接将外部输入作为参数传递给java.lang.Runtime.exec()方法的时候易引入下列哪些攻击类型的漏洞 
+A. SQL注入
+B. XML注入
+C. 命令注入
+D. 参数注入攻击
+答案：CD
+
+54.包装类可以用于下面那些： 
+A. 反射方法
+B. 泛型
+C. 集合中类型
+D. POJO RPC某些不需要设置默认值的类型
+答案：ABCD
+
+55.关于File的描述，正确的是 
+A. File实例不能用于封装目录只用于封装文件
+B. 创建一个File类的实例将导致打开指定文件进行读写
+C. File实例封装了指定文件的信息
+D. File类位于jav.io包中
+
+答案：CD
+
+56.Netty的高性能体现在哪
+A. IO
+B. 内存零拷贝
+C. 内存池
+D. 串行化处理读写
+E. 可以使用protobuff等高性能序列化协议
+
+答案：ABCDE
+
+57.下列选项有关ResultSet说法错误的是
+A.     ResultSet是查询结果集对象，如果JDBC执行查询语句没有查询到数据，那 么ResultSet将会是null值
+B. ResultSet有一个记录指针，指针所指的数据行叫做当前数据行，初始状态下记录指针指向第一条记录
+C. 判断ResultSet是否存在查询结果集，可以调用它的next()方法
+D. 如果Connection对象关闭，那么ResultSet也无法使用
+答案：AB
+
+58.规则7.5 禁止序列化非静态的内部类，内部类的序列化，要么不序列化，如果想序列化，就要保证是静态的。
+
+59.若父类构造函数有参数，则在子类构造函数中需显示调用该父类构造函数，应该加上一个super(i)，否则编译报错
+
+60.防止未加密的敏感数据被序列的方法有 (ABCD)
+A. 使用transient定义敏感数据
+B. 使用serialPersistentFields定义非敏感数据
+C. 重新定义Serializable接口的writeObject()、writeReplace()、writeExternal()这些函数，不将包含敏感信息的字段写到序列化字节流中。
+D. 在序列化与反序列化涉及的writeObject()和readObject()方法中使用安全管理器
+
+61.方法过长意味着： (ABCD)
+A. 方法需要抽象
+B. 功能不单一
+C. 过于复杂
+D. 不便于他人阅读和修改代码
+
+62.一个变量可以遮掩具有相同名字的一个类，只要它们都在同一个范围内。
+
+63.关于方法返回值描述错误的是：(D)
+A. 方法的返回值必须被正确解析或者使用
+B. 方法可以没有返回值
+C. 返回值可以没有被用到
+D. 方法的返回值可被忽略
+
+64.Java中如何释放掉一个指定占据的内存空间 (A)
+A. 程序员无法明确强制垃圾回收器运行
+B. 调用free()方法
+C. 赋值给该对象的引用为null
+D. 调用System.gc()方法
+
+65.以下NIO语句是否有错误？（E）
+A.大二进制文件读入
+B. 小二进制文件读入
+C. 小文本按行读入
+D. 小文本按字节数读入
+E. 结尾插入数据采用.APPEND而不是 .CREATE
+
+66.如下描述错误的是：(B)
+A) StackOverflowError 是堆栈内存溢出
+B) OutOfMemoryError：Perm Gen 是老年代内存溢出（永久代）
+C) Java Heap Space溢出时，会导致所有线程暂停工作
+
+67.建议除非必须使用的第三方接口要求必须实现Serializable接口，否则不建议使用的原因包括：(ALL)
+A： 序列化对外公开了对象的物理实现
+B： 序列化容易使一个类对其最初的内部表示产生依赖
+C： 编写正确的反序列化代码有很大的挑战
+D： 序列化增大了安全风险
+E： 序列化增加了测试的难度
+
+68.以下说法正确的是：AD
+A、不要在代码中硬编码"\n"和"\r"作为换行符号，建议使用System.lineSeparator()方法获取运行时环境的换行符
+B、编码时尽量依赖平台默认的字符编码方式
+C、String类的toUpperCase()和toLowerCase()方法、format()方法，建议使用默认的编码模式进行转换
+D、使用java.nio.charset中的类编码解码字符集
+
+69.
+
+下面的代码实现中，对xml内部实体扩展没有防护作用的是： (B)
+①DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+dbf.setFeature(“http://apache.org/xml/features/disallow-doctype-decl”, true);
+DocumentBuilder db = dbf.newDocumentBuilder();
+db.parse(inStream);
+②DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+dbf.setFeature(“http://oracle.com/xml/jaxp/properties/entityExpansionLimit”, “200”);
+DocumentBuilder db = dbf.newDocumentBuilder();
+db.parse(inStream);
+③System.setProperties(“entityExpansionLimit”, “200”);
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+DocumetBuilder db = dbf.newDocumentBuilder();
+db.parse(inStream);
+④SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature(“http://xml.org/sax/features/external-general-entities”, false)
+factory.setFeature(“http://xml.org/sax/features/external-parameter-entities”, false);
+SAXParser saxParser = factory.newSAXParser();
+saxParser.parse(inStream, defaultHandler);
+A. ③
+B. ④
+C. ①
+D. ②
+
+
+69.1下面代码中存在XML实体注入的是： (A)
+A. SAXParserFactory factory = SAXParserFactory.newInstance();
+SAXParser saxParser = factory.newSAXParser();
+saxParser.parse(inStream, defaultHandler);
+B. public static String DDD = "http://apache.org/xml/features/disallow-doctype-decl";
+public static String EGE = "http://xml.org/sax/features/external-general-entities";
+public static String EPE = "http://xml.org/sax/features/external-parameter-entities";
+public static String LED = "http://apache.org/xml/features/nonvalidating/load-external-dtd";
+SAXReader reader = new SAXReader();
+reader.setFeature(LED, false);
+reader.setFeature(EGE, false);
+reader.setFeature(EPE, false);
+C. XMLReader reader = saxParser.getXMLReader();
+reader.serEntityResolve(new CustomerResolver());
+reader.setErrorHandler(defaultHandler);
+D. DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+dbf.setExpandEntityReferences(false)
+
+70.在Java环境中，允许处于不同受信域的组件进行数据通信，从而出现跨受信边界的数据传输。以下哪种方式可以在一定程度上解决反序列化中的信息泄漏问题： (BD)
+A. 将属性声明为final
+B. 将敏感数据声明为transient
+C. 将属性声明为private
+D. 特殊情况下正确加密了的数据可以被序列化
+
+71.Socket哪些操作可能会进入阻塞状态 (ABC)
+A. server socket的accpet()监听客户端连接
+B. 执行socket的输出流写数据
+C. 执行socket的输入流读取数据
+D. Socket的getOutputStream()，getInputStream()
+
+72.下列说法错误的是 (B)
+A. ConcurrentHashMap不允许有null的key、value
+B. TreeMap可以有null的key、value
+C. ConcurrentHashMap是线程安全的
+D. HashMap线程不安全，但效率高
+
+73.以下使用的断言语句中哪些有副作用 (BC)
+A. assert names.isEmpty();
+B. assert names.remove(null);
+C. assert names.add(null);
+D. Boolean nullsRemoved = names.remove(null);
+Assert nullsRemoved
+
+74.使用SecurityManager进行安全设定，可以应用于下面哪几个场景（多选）（ABD ）
+A. 限制文件的访问权限（文件的读写删除和执行）
+B. 控制网络的连接和监听
+C. 控制线程的访问，提升多线程的处理效率。 不能提升线程的处理效率。
+D. 类加载器的加载
+
+75.字节流、字符流区别描述正确的是（BD）
+A. 字节流关注流，不关注内容，字符流按行读取，关注文本 
+B. 字节流的基类InputStream/OutputStream，字符流是Reader/Writer
+C. 字符流是对字节流的装饰，释放时反向逐一关闭 // 字符流是单独的流
+D. 字符流最终都会按照字节流处理
+答案BD
+
+76以下哪些会释放锁（AC）
+A. wait
+B. sleep
+C. join
+D. yield
+
+77.JPDA由什么组成？
+A. JVMTI（JVM Tool Interface）
+B. JDWP（Java Debug Wire Protocol）
+C.JDI（Java Debug Interface）
+D.JFR
+答案：ABC
+
+78.下列对sql注入防护措施中的转码描述正确的是 (B)
+A. 转码是优选的sql注入防护措施
+B. 转码仅对拼接sql语句中，单引号或双引号限制的字段生效
+C. 在拼接sql语句前进行转码，可以彻底解决sql注入问题
+D. 转码对表名、字段等不适用于参数化查询的场景是优选的方案
+
+79.栈帧存储了哪些信息？ (ABCD)
+A. 方法的局部变量表
+B. 操作数栈
+C. 动态连接
+D. 方法返回地址
+
+80.Java动态代理，(类似RPC框架）问什么阶段生效的？ (D)
+A. 初始化
+B. 编译
+C. 加载
+D. 运行
+
+81.下面关于字符流和字节流说法正确的是 (ABC)
+A. 字符向字节转换时，需要注意编码问题
+B. 字节流继承于InputStream OutputStream，字符流继承于InputSteamReader OutputStreamWriter
+C. 字符流使用了缓冲区(Buffer)，而字节流没有使用缓冲区
+D. 字符是字节通过不同编码的包装，相同的字节代表相同的字符
+
+82.synchronized和ReentrantLock都是可重入锁
+
+83.SocketChannel可以向Selector注册哪些事件 (BCD)
+A. SelectionKey.OP_ACCEPT
+B. SelectionKey.OP_CONNECT
+C. SelectionKey.OP_WRITE
+D. SelectionKey.OP_READ
+
+84.在使用UDP套接字通信时，通常使用（A）类把要发送的信息打包
+A. DatagramPacket
+B. DatagramSocket
+C. String
+D. MulticastSocket
+
+85.关于synchronized的叙述错误的是 (D)
+A. 占用锁的线程在调用wait()后，会自动释放线程占有的锁
+B. sychronized在JVM层面控制线程同步
+C. 占用锁的线程在发生异常时，会自动释放线程占用的锁
+D. synchronized可用于处理读写互斥，读读不互斥的操作场景
+
+86interface不能被哪些修饰词修饰? (ABD)
+A. protected
+B. final
+C. public
+D. private
+
+87.关于Java8 Stream的描述正确的是 (A)
+A. Stream跟迭代器类似，再次遍历需要重新生成
+B. Stream执行方式跟之前代码处理方式类似，中间操作立即执行
+C. 对Stream修改体现到数据源上
+D. Stream数据源只能是数组、容器或I/O
+
+88.关于File的描述，正确的是 (CD)
+A. File实例不能用于封装目录只用于封装文件
+B. 创建一个File类的实例将导致打开指定文件进行读写
+C. File实例封装了指定文件的信息
+D. File类位于jav.io包中
+
+89.Java NIO Channel通道和IO流的区别，说法正确的是：(ACD)
+A. 通道可以异步读写，流是同步读写
+B. 通道和流都可以支持Selector选择器多路复用
+C. 通道可以读也可以写，流一般来说是单向的
+D. 通道是面向缓冲区的，流是面向流的
+
+90.关于CountDownLatch的描述，正确的是 (ABCD)
+A. CountDownLatch.countDown()计数为0就会释放所有线程
+B. CountDownLatch计数为0后，无法重置
+C. CountDownLatch.countdown()为计数减控制
+D. CountDownLatch.await()只能触发阻塞等待，计数不会-1
+
+91.在java中，使用JDBC时，使用PreparedStatement执行sql语句有哪些好处 (ABD)
+A. 使用PreparedStatement进行sql注入防护是优选方案
+B. 使用PreparedStatement多次执行同一条sql语句可以提升执行的效率
+C. 使用PreparedStatement可以有效解决所有的sql注入问题
+D. 正确使用PreparedStatement，可以有效防止sql注入的发生
+
+92.以下路径属于标准化路径（Canonical Path）的是： (B)
+A. ~/test
+B. /opt/oss/log
+C. $ROOT/etc/conf
+D. /opt/oss/…/…/etc
+
+93.若程序中需要获取操作系统登录用户名，应采取下列哪种方法来获取：©
+A. 提示用户输入
+B. 由环境变量获取:System.getenv(“USER”)
+C. 由JVM属性获取:System.getProperty(“user.name”)
+D. 启动程序的时候由程序参数传入
+
+94.自定义类装载器没有调用父类的getPermissions()方法会出现下列哪些情况 (AC)
+A. 安全权限完全独立于默认的安全权限
+B. 自定义安全规则不生效
+C. 自定义安全规则覆盖了默认安全规则
+D. 具有自定义安全规则+默认安全规则
