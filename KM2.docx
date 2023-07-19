@@ -1646,3 +1646,103 @@ B． 在类方法中调用本类的类方法时可直接调用
 C． 在类方法中只能调用本类中的类方法 
 D． 在类方法中绝对不能调用实例方法  // main是例外
 
+以下对Java集合说法正确的是：（）1
+A. 往一个ArrayList或者Vector里插入一个元素时，如果内部数组空间不够，ArrayList或Vector会扩展它的大小。Vector在默认情况下增长一倍的大小，而ArrayList增加50%的大小
+B. ArrayList、Vector、HashMap、StringBuilder和StringBuffer都是线程不安全的
+C. Vector类实现了一个动态数组，默认不传参数时，构造容量为16的大小，也可以传参指定容量大小；ArrayList就是动态的数组，默认不传参数时，构造容量为10的大小，也可以传参指定容量大小
+D. ConcurrentHashMap、HashMap、HashSet都不支持key为null，且遍历使用的都是Iterator迭代器，其中只有HashTable是线程安全的
+
+如果一个对象存入Hash集合后hashcode随即发生变化，会导致什么结果？ ()1
+
+A. 内存泄漏
+B. 无任何问题
+C. 内存溢出
+D. 抛出异常
+
+关于集合，以下说法正确的是23
+A、HashMap使用的是数组+链表（或红黑树）的方式，查找key时，先判断key的equals是否相等，相等时再判断hashCode是否一致 
+B、HashMap和HashSet的默认值大小为16，HashTable的默认值大小为11 
+C、LinkedHashMap保持插入的顺序，TreeMap保持key的自然顺序
+D、Collection的直接子类包含Set、List、Map和Queue  
+
+下面描述错误的是： 1
+A、HashMap不允许null值(key和value都不可以)，而Hashtable允许将null作为一个entry的key或者value 
+B、Hashtable是线程安全的，也就是说是同步的，HashMap线程不安全的，不是同步的
+C、Hashtable和HashMap都实现了Map接口
+D、ConcurrentHashMap不可存放key，value值都为null的数据
+
+下面描述正确的是 ()3
+A. 多线程环境下使用CourrentHashMap和Collections. synchronizedMap实现同步效率差别不大
+B. Collections. synchronizedMap不是线程安全的
+C. 多线程环境下使用HashTable和Collections. synchronizedMap实现同步效率差别不大
+D. ConcurrentHashMap的锁粒度较大
+
+List<String> tmpList = new LinkedList<>();
+tmpList.add("Hello");
+tmpList.add("My");
+tmpList.add("Son");
+ 
+for (String curStr : tmpList) {
+if ("My".equals(curStr)) {
+tmpList.remove(curStr);
+}
+System.out.printf("curStr = %s, tmpLIst = %s\n", curStr, tmpList.toString());
+}
+ 
+A.T 
+curStr = Hello, tmpList = [Hello, My, Son]
+curStr = My, tmpList = [Hello, Son]
+B. F运行出错抛出IllegalStateException
+C. F运行出错抛出ConcurrentModificationException
+D.F 
+curStr = Hello, tmpList = [Hello, My, Son]
+curStr = My, tmpList = [Hello, Son]
+curStr = Son, tmpList = [Hello, Son]
+
+关于以下规则，说法正确的是：13
+1：case语句块结束时如果不加break，必须有注释说明  
+2：switch语句必须有default分支   
+3：变量应被声明在接近它们首次使用的行 
+4：每行仅能声明一个变量 
+
+跳转语句不包括下列哪项：()1
+A：goto       B：continue       C：throw      D：return
+
+以下关于泛型集合说法正确的是：（）124
+A. `List<? extends T>`存放的类型一定为T及其子类，但是获取要用T或者其父类引用
+B. `List<? extends T>`进行add（T子类）编译出错：因为无法确定到底是哪个子类
+C. `List<? super T>` get()方法返回的对象都是Object类型，因为T的最上层父类是Object，想要向下转型只能强转
+D. `List<? super T>`存放的类型一定为T及其父类，但添加一定为T和其子类对象
+
+以下说法正确的是（）123
+A. Throwable是所有Error或Exception的超类。
+B. 只有Throwable或其子类才能被抛出（throw）或者被捕获（catch）。
+C. 绝大部分Error会导致程序本身（比如JVM）出现不可避免的、不可恢复的状态，所以这样的问题不需要在程序中进行处理。
+D. 编译器会强制要求使用者捕获RuntimeException或申明抛出。
+
+在JAVA的异常处理中，用户自定义的异常类一般应该是（）的子类2
+A. Error
+B. Exception
+C. RuntimeException
+D. Throwable
+
+以下哪些属于非受检异常：12
+A. 变量指向空指针，返回NullPointerException
+B. 超出数组范围
+C. 变量访问了不存在的文件，返回FileNotFoundException
+D. 读取文件的操作超出文档末尾范围
+
+以下哪些属于非受检异常：1234
+A. ClassCastException
+B. IndexOutOfBoundsException
+C. NullPointerException
+D．IllegalStateException
+E．FileNotFoundException 
+F．NoSuchFieldException
+
+关于try-with-resources说法正确的是： （D）
+A、不能加finally
+B、按照创建的资源顺序关闭 // 逆序
+C、try中创建的变量在catch和finally可见 // 不在同一作用域
+D、资源关闭在catch和finally中语句执行之前
+
